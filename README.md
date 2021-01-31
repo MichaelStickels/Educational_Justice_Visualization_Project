@@ -10,3 +10,22 @@
   - How does public school funding impact dropout rate?
   - How does a school district's average income affect access to environmental classes?
   - How does a school district's average income affect dropout rate?
+
+
+* Data
+  * Where did you download the data (e.g., a web URL)?
+    * The datasets we have found so far are all from the National Center for Education Statistics (NCES), downloaded from their [website](https://nces.ed.gov/programs/edge/Home). By using multiple datasets from the same source, we can ensure that the datasets will all play nicely together with minimal coaxing. For example, the NCES categorizes its data in multiple ways, including school name, and all of their datasets have the same capitalization and abbreviation conventions within these categories. We may look for more datasets to add to our analysis and help us answer some of our research questions more in depth further into the project.
+
+  * How was the data collected or generated? Make sure to explain who collected the data (not necessarily the same people that host the data), and who or what the data is about?
+    * Each dataset from the NCES comes with a document detailing the methodologies behind the collection of the data, explanations of the individual parameters, discussion on the possible implications or inaccuracies in the data due to the collection methods or other limitations. Most of the data in our selected datasets comes either directly from US Census data, or is derived from US Census data.
+
+  * How many observations (rows) are in your data?
+    * Some NCES datasets are grouped by school and have 100552 rows. Some are grouped by School District, which have 11911 rows. Datasets by county have 3143 rows.
+
+  * How many features (columns) are in the data?
+    * School neighborhood Poverty Estimates (2015-2016) - contains 4 columns
+    * Selected Economic Characteristics of Relevant Children Enrolled - contains 444 columns
+    * Comparable Wage Index for Teachers (CWIFT) - contains 6 columns
+
+  * What questions (from above) can be answered using the data in this dataset?
+    * Our research questions can be broken down into two categories, those that look at time in primary and secondary education, and those that look at time following primary and secondary education. As in, some questions look at a students time in school, and other look at a students time after graduation (not including post-secondary school). These initial datasets give us a lot of information to look at to form some base analyses on a students time in school, which will allow us to answer that first category of research questions, and set us up to answer the second category with further data. We hope that we can find useful datasets for the second group of research questions.
