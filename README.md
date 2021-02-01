@@ -36,3 +36,16 @@
 
   * **What questions (from above) can be answered using the data in this dataset?**
     * Our research questions can be broken down into two categories, those that look at time in primary and secondary education, and those that look at time following primary and secondary education. As in, some questions look at a students time in school, and other look at a students time after graduation (not including post-secondary school). These initial datasets give us a lot of information to look at to form some base analyses on a students time in school, which will allow us to answer that first category of research questions, and set us up to answer the second category with further data. We hope that we can find useful datasets for the second group of research questions.
+
+***
+
+  **Note**
+
+  More applicable datasets that have not been closely looked at yet but may be useful:
+
+  * [Yale Climate Opinion Maps 2020](https://climatecommunication.yale.edu/visualizations-data/ycom-us/)
+    * > "These maps show how Americans’ climate change beliefs, risk perceptions, and policy support vary at the state, congressional district, metro area, and county levels."
+
+      Can be linked geographically (likely by county) to our school data. Not specifically the opinions of school-age individuals, but can certainly contribute to interesting analysis.
+
+  
