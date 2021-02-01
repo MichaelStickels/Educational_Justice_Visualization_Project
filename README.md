@@ -8,6 +8,7 @@
 - **What other examples of data driven project have you found related to this domain (share at least 3)?**
   - [Getting Climate Studies Into Schools](https://www.nytimes.com/2020/09/02/climate/schools-climate-curriculum.html?searchResultPosition=106)
   - [Hotter Days Widen Racial Gap in U.S. Schools, Data Shows](https://www.nytimes.com/2020/10/05/climate/heat-minority-school-performance.html?searchResultPosition=1)
+  - [Environmental Education in Rural Areas](https://nces.ed.gov/surveys/ruraled/environment.asp)
 
 - **What data-driven questions do you hope to answer about this domain (share at least 3)?**
   - How does the number of environmental classes taken impact a student's belief in climate change?
@@ -15,6 +16,7 @@
   - How does public school funding impact dropout rate?
   - How does a school district's average income affect access to environmental classes?
   - How does a school district's average income affect dropout rate?
+  - How does a student's living situation affect what they are taught about the environment? 
 
 ***
 
