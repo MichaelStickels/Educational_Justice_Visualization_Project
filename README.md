@@ -3,7 +3,11 @@
 **Domain of Interest**
 
 - **Why are you interested in this field/domain?**
+<<<<<<< HEAD
   - We are interested in analyzing educational data because it often shows social injustice. Indicators such as school amenities, school funding, graduation rate, dropout rate, and more could show if districts are receiving disproportionate support. We would also like to investigate how primary and secondary education data relates to post-secondary education data. If able, we are also interested in analyzing how access to environmental education and outdoor spaces impacts students post-graduation (such impacts could include belief in climate change). Social and environmental justice are connected because climate change will disproportionately impact low-income communities (and due to systematic injustices people of color disproportionately make up low income communities). We believe that education data may highlight many of these injustices and we are interested in uncovering some these problems. It is critical that we continue uncovering social and environmental injustices to protect the health and well-being of all communities.
+=======
+  - We are interested in analyzing educational data because it often shows social injustice. Indicators such as school amenities, school funding, graduation rate, dropout rate, and more can all show how districts are receiving disproportionately low support. We would also like to investigate how grade school data relates to post-graduation data. If able, we are interested in analyzing how access to environmental education and outdoor spaces also impacts students once they are out of grade school (such impacts could include belief in climate change). Social and environmental justice are connected because climate change will disproportionately impact low-income communities (and due to systematic injustices people of color disproportionately make up low income communities). We believe that education data may highlight many of these injustices and are interested in uncovering some these problems. It is critical that we continue uncovering social and environmental injustices to protect the health and well-being of all communities.
+>>>>>>> c3d80a44a7a5a53747d0a4354e0ab2c32841415c
 
 - **What other examples of data driven project have you found related to this domain (share at least 3)?**
   - [Getting Climate Studies Into Schools](https://www.nytimes.com/2020/09/02/climate/schools-climate-curriculum.html?searchResultPosition=106)
@@ -16,7 +20,11 @@
   - How does public school funding impact dropout rate?
   - How does a school district's average income affect access to environmental classes?
   - How does a school district's average income affect dropout rate?
-  - Does a community's environmental beliefs impact available environmental information/classes in public schools)? 
+<<<<<<< HEAD
+  - Does a community's environmental beliefs impact available environmental information/classes in public schools)?
+=======
+  - How does a student's living situation affect what they are taught about the environment?
+>>>>>>> c3d80a44a7a5a53747d0a4354e0ab2c32841415c
 
 ***
 
