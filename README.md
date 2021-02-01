@@ -16,6 +16,7 @@
   - How does public school funding impact dropout rate?
   - How does a school district's average income affect access to environmental classes?
   - How does a school district's average income affect dropout rate?
+  - How does a student's living situation affect what they are taught about the environment? 
 
 ***
 
