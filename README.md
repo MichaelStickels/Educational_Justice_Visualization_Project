@@ -47,5 +47,3 @@
     * > "These maps show how Americans’ climate change beliefs, risk perceptions, and policy support vary at the state, congressional district, metro area, and county levels."
 
       Can be linked geographically (likely by county) to our school data. Not specifically the opinions of school-age individuals, but can certainly contribute to interesting analysis.
-
-  
