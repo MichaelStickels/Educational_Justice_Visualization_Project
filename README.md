@@ -3,7 +3,7 @@
 **Domain of Interest**
 
 - **Why are you interested in this field/domain?**
-  - We are interested in analyzing educational data because it often shows social injustice. Indicators such as school amenities, school funding, graduation rate, dropout rate, and more can all show how districts are receiving disproportionately low support. We would also like to investigate how grade school data relates to post-graduation data. If able, we are interested in analyzing how access to environmental education and outdoor spaces also impacts students once they are out of grade school (such impacts could include belief in climate change). Social and environmental justice are connected because climate change will disproportionately impact low-income communities (and due to systematic injustices people of color disproportionately make up low income communities). We believe that education data may highlight many of these injustices and are interested in uncovering some these problems. It is critical that we continue uncovering social and environmental injustices to protect the health and well-being of all communities.
+  - We are interested in analyzing educational data because it often shows social injustice. Indicators such as school amenities, school funding, graduation rate, dropout rate, and more could show if districts are receiving disproportionate support. We would also like to investigate how primary and secondary education data relates to post-secondary education data. If able, we are also interested in analyzing how access to environmental education and outdoor spaces impacts students post-graduation (such impacts could include belief in climate change). Social and environmental justice are connected because climate change will disproportionately impact low-income communities (and due to systematic injustices people of color disproportionately make up low income communities). We believe that education data may highlight many of these injustices and we are interested in uncovering some these problems. It is critical that we continue uncovering social and environmental injustices to protect the health and well-being of all communities.
 
 - **What other examples of data driven project have you found related to this domain (share at least 3)?**
   - [Getting Climate Studies Into Schools](https://www.nytimes.com/2020/09/02/climate/schools-climate-curriculum.html?searchResultPosition=106)
@@ -12,11 +12,12 @@
 
 - **What data-driven questions do you hope to answer about this domain (share at least 3)?**
   - How does the number of environmental classes taken impact a student's belief in climate change?
-  - How does public school funding impact students future income?
+  - How does public school funding impact students' future income?
   - How does public school funding impact dropout rate?
   - How does a school district's average income affect access to environmental classes?
   - How does a school district's average income affect dropout rate?
-  - How does a student's living situation affect what they are taught about the environment? 
+  - Does a community's environmental beliefs impact available environmental information/classes in public schools)?
+
 
 ***
 
@@ -38,3 +39,14 @@
 
   * **What questions (from above) can be answered using the data in this dataset?**
     * Our research questions can be broken down into two categories, those that look at time in primary and secondary education, and those that look at time following primary and secondary education. As in, some questions look at a students time in school, and other look at a students time after graduation (not including post-secondary school). These initial datasets give us a lot of information to look at to form some base analyses on a students time in school, which will allow us to answer that first category of research questions, and set us up to answer the second category with further data. We hope that we can find useful datasets for the second group of research questions.
+
+***
+
+  **Note**
+
+  More applicable datasets that have not been closely looked at yet but may be useful:
+
+  * [Yale Climate Opinion Maps 2020](https://climatecommunication.yale.edu/visualizations-data/ycom-us/)
+    * > "These maps show how Americans’ climate change beliefs, risk perceptions, and policy support vary at the state, congressional district, metro area, and county levels."
+
+      Can be linked geographically (likely by county) to our school data. Not specifically the opinions of school-age individuals, but can certainly contribute to interesting analysis.
