@@ -31,6 +31,11 @@ summary_info$max_pov_neighborhood <- Neighborhoods %>%
   filter(IPR_EST == max(IPR_EST)) %>%
   select(NAME, IPR_EST)
 
+# Calculate mean poverty rate of Neighborhoods 
+summary_info$mean_pov_rate <- Neighborhoods %>%
+  summarize(IPR_EST = mean(IPR_EST)) %>%
+  select(IPR_EST)
+
 
 
 
