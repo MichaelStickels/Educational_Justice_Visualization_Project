@@ -1,8 +1,9 @@
-# File to calculate summary information about our datasets 
+# File to calculate summary information about our dataframes  
 
 # Load in libraries 
 library(stringr)
 library(tidyr)
+library(dplyr)
 
 # Load in tables 
 Neighborhoods <- read.csv("https://raw.githubusercontent.com/MichaelStickels/Educational_Justice_Visualization_Project
@@ -18,3 +19,18 @@ summary_info <- list()
 
 # Calculate number of counties in the Comparable Wage Index for Teachers 
 summary_info$total_counties <- nrow(ComparableWageIndex)
+
+# Calculate number of neighborhoods in Neighborhoods 
+summary_info$num_neighborhoods <- nrow(Neighborhoods)
+
+# Calculate number of school districts in Economic 
+summary_info$num_school_districts <- nrow(Economic)
+
+# Calculate neighborhood with max poverty estimate 
+summary_info$max_pov_neighborhood <- Neighborhoods %>%
+  filter(IPR_EST == max(IPR_EST)) %>%
+  select(NAME, IPR_EST)
+
+
+
+
