@@ -8,7 +8,6 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
 We are studying how educational data highlights social injustices. Variables
 such as school amenities, school funding, graduation rate, dropout rate, and 
 more could demonstrate what districts are receiving disproportionately high
