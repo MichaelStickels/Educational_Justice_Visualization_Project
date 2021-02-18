@@ -13,3 +13,6 @@ YaleData <- read.csv("https://raw.githubusercontent.com/MichaelStickels/Educatio
   /main/Data/Yale%20Climate%20Opintion%20Data/YCOM_2020_Data.csv")
 
 # Create aggregate table using group_by() function 
+EconAgg = aggregate(ComparableWageIndex, by = list(State = ComparableWageIndex$ST_NAME, Average.CWIF = ComparableWageIndex$CNTY_CWIFTEST),
+                   FUN = mean)
+
