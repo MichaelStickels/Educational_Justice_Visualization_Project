@@ -1,7 +1,5 @@
 ---
 title: "index.Rmd"
-author: "Katie Jerauld"
-date: "2/17/2021"
 output: html_document
 ---
 
@@ -25,3 +23,14 @@ environmental injustices. We believe that education data may highlight many of
 these injustices and we are interested in uncovering some these problems. It is 
 critical that we continue uncovering social and environmental injustices to 
 protect the health and well-being of all communities.
+
+# Summary Information Script
+# ```{r}
+# source("Summary.R")
+# ```
+
+# Table Script
+```{r}
+source("Table.R")
+```
+
