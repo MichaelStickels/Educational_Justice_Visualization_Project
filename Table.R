@@ -21,7 +21,7 @@ by_location <- YaleData %>%
   group_by(GeoType)
 
 # Create a table using Yale Climate Opinion dataframe 
-Climate <- YaleData %>%
+Climate_Education <- YaleData %>%
   select(
     Location_Type = GeoType, 
     Location = GeoName, 
