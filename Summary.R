@@ -13,6 +13,8 @@ Economic <- read.csv("https://raw.githubusercontent.com/MichaelStickels/Educatio
   (Public%20and%20Private)%20(2014-2018)/CDP03_104_USSchoolDistrictAll.csv")
 ComparableWageIndex <- read.delim("https://raw.githubusercontent.com/MichaelStickels/Educational_Justice_
   Visualization_Project/main/Data/NCES%20Data/Comparable%20Wage%20Index%20for%20Teachers%20(2016)/EDGE_ACS_CWIFT2016_County.txt")
+YaleData <- read.csv("https://raw.githubusercontent.com/MichaelStickels/Educational_Justice_Visualization_Project
+  /main/Data/Yale%20Climate%20Opintion%20Data/YCOM_2020_Data.csv")
 
 # Function that takes in dataset and returns a list of info about it 
 summary_info <- list() 
