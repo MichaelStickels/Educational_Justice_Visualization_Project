@@ -1,0 +1,27 @@
+---
+title: "index.Rmd"
+author: "Katie Jerauld"
+date: "2/17/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+We are studying how educational data highlights social injustices. Variables
+such as school amenities, school funding, graduation rate, dropout rate, and 
+more could demonstrate what districts are receiving disproportionately high
+or low support. We will investigate how primary and secondary education data 
+relates to post-secondary (post-graduation) education data.If able, we are also 
+interested in analyzing how access to environmental education and outdoor spaces
+impacts students post-graduation (such impacts could include belief in climate 
+change). Social and environmental justice are connected because the impacts of
+climate change disproportionately affect low-income communities (and due to 
+systematic injustices people of color disproportionately make up low income 
+communities). Low-income communities have less resilience to storms and 
+environmental crises caused by climate change, so it is important to 
+preemptively investigate what communities are most affected by social and
+environmental injustices. We believe that education data may highlight many of 
+these injustices and we are interested in uncovering some these problems. It is 
+critical that we continue uncovering social and environmental injustices to 
+protect the health and well-being of all communities.
