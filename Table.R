@@ -39,8 +39,21 @@ by_district <- Economic %>%
 
 # Create aggregate table using Economic data 
 EconAgg = aggregate(Economic, by = list(District = Economic$Geography, 
-  Year = Economic$Year, CDP = Economic$CDP03_1est),
+  Year = Economic$Year, CDP = Economic$CDP03_1moe),
   FUN = mean)
+
+# Aggregated table of Yale Climate Data and create a table with the percentage of citizens who 
+# support certain topics 
+by_location <- YaleData %>%
+  group_by(GeoType)
+
+Climate <- YaleData %>%
+  select(
+    GeoType, GeoName, TotalPop, reducetax, CO2limits,
+    localofficials, governor, congress, president,
+    corporations
+  ) %>%
+  arrange(GeoType)
 
 
 
