@@ -49,12 +49,22 @@ by_location <- YaleData %>%
 
 Climate <- YaleData %>%
   select(
-    GeoType, GeoName, TotalPop, reducetax, CO2limits,
-    localofficials, governor, congress, president,
-    corporations, regulate, drilloffshore, teachGW,
-    worried
+    Location_Type = GeoType, 
+    Location = GeoName, 
+    Population = TotalPop, 
+    Support_Tax_Reduction = reducetax, 
+    Reduce_CO2_limits = CO2limits,
+    Support_Local_Officials = localofficials, 
+    Support_Governor = governor, 
+    Support_Congress = congress, 
+    Support_President = president,
+    Support_Corporations = corporations, 
+    Support_regulating_emissions = regulate, 
+    Support_Offshore_Drilling = drilloffshore, 
+    Support_Global_warming_edu = teachGW,
+    Worried_for_Future = worried
   ) %>%
-  arrange(GeoName)
+  arrange(Location)
 
 
 
