@@ -15,6 +15,31 @@ ComparableWageIndex <- read.delim("https://raw.githubusercontent.com/MichaelStic
 YaleData <- read.csv("https://raw.githubusercontent.com/MichaelStickels/Educational_Justice_Visualization_Project
   /main/Data/Yale%20Climate%20Opintion%20Data/YCOM_2020_Data.csv")
 
+# Aggregated table of Yale Climate Data and create a table with the percentage of citizens who 
+# support certain topics 
+by_location <- YaleData %>%
+  group_by(GeoType)
+
+# Create a table using Yale Climate Opinion dataframe 
+Climate <- YaleData %>%
+  select(
+    Location_Type = GeoType, 
+    Location = GeoName, 
+    Population = TotalPop, 
+    Support_Tax_Reduction = reducetax, 
+    Reduce_CO2_limits = CO2limits,
+    Support_Local_Officials = localofficials, 
+    Support_Governor = governor, 
+    Support_Congress = congress, 
+    Support_President = president,
+    Support_Corporations = corporations, 
+    Support_regulating_emissions = regulate, 
+    Support_Offshore_Drilling = drilloffshore, 
+    Support_Global_warming_edu = teachGW,
+    Worried_for_Future = worried
+  ) %>%
+  arrange(Location)
+
 # Group CWI dataframe by state 
 CWI_by_state <- ComparableWageIndex %>%
   group_by(ST_NAME)
@@ -39,8 +64,11 @@ by_district <- Economic %>%
 
 # Create aggregate table using Economic data 
 EconAgg = aggregate(Economic, by = list(District = Economic$Geography, 
-  Year = Economic$Year, CDP = Economic$CDP03_1est),
+  Year = Economic$Year, CDP = Economic$CDP03_1moe),
   FUN = mean)
+
+
+
 
 
 
