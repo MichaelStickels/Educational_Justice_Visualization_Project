@@ -36,6 +36,9 @@ summary_info$mean_pov_rate <- Neighborhoods %>%
   summarize(IPR_EST = mean(IPR_EST)) %>%
   select(IPR_EST)
 
-
+# Calculate average Comparable Wage Index for Teachers 
+summary_info$mean_comp_wage <- ComparableWageIndex %>%
+  summarize(CNTY_CWIFTEST = mean(CNTY_CWIFTEST)) %>%
+  select(CNTY_CWIFTEST)
 
 
