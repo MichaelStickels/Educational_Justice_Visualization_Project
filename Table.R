@@ -12,8 +12,22 @@ ComparableWageIndex <- read.delim("https://raw.githubusercontent.com/MichaelStic
 YaleData <- read.csv("https://raw.githubusercontent.com/MichaelStickels/Educational_Justice_Visualization_Project
   /main/Data/Yale%20Climate%20Opintion%20Data/YCOM_2020_Data.csv")
 
-# Create aggregate table using group_by() function 
-EconAgg = aggregate(ComparableWageIndex, by = list(State = ComparableWageIndex$ST_NAME, 
+# Group CWI dataframe by state 
+CWI_by_state <- ComparableWageIndex %>%
+  group_by(ST_NAME)
+
+# Create aggregate table using Comparable Wage Index data 
+CWIAgg = aggregate(ComparableWageIndex, by = list(State = ComparableWageIndex$ST_NAME, 
   Average.CWIFT = ComparableWageIndex$CNTY_CWIFTEST),
-  FUN = mean)
+  FUN = mean) 
+
+
+# Create aggregate table using Neighborhoods data 
+
+# Create aggregate table using Economic data 
+
+
+
+
+
 
