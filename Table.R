@@ -51,9 +51,10 @@ Climate <- YaleData %>%
   select(
     GeoType, GeoName, TotalPop, reducetax, CO2limits,
     localofficials, governor, congress, president,
-    corporations
+    corporations, regulate, drilloffshore, teachGW,
+    worried
   ) %>%
-  arrange(GeoType)
+  arrange(GeoName)
 
 
 

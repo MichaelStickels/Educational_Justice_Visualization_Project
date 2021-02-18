@@ -38,6 +38,12 @@ summary_info$support_CO2_limits <- YaleData %>%
   summarize(CO2limits = mean(CO2limits)) %>%
   select(CO2limits)
 
+# Calculate the average amount of citizens that want there to be 
+# education for global warming in schools 
+summary_info$for_global_warming_edu <- YaleData %>%
+  summarize(teachGW = mean(teachGW)) %>%
+  select(teachGW)
+
 # Calculate neighborhood with max poverty estimate 
 summary_info$max_pov_neighborhood <- Neighborhoods %>%
   filter(IPR_EST == max(IPR_EST)) %>%
