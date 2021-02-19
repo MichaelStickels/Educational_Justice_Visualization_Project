@@ -27,16 +27,16 @@ protect the health and well-being of all communities.
 \  
 
 # Summary Information Script
-#```{r}
-#source("Summary.R")
-#```
+```{r}
+source("Summary.R")
+```
 
 \  
 
 # Table Script
-#```{r}
-#source("Table.R")
-#```
+```{r}
+source("Table.R")
+```
 
 \  
 
