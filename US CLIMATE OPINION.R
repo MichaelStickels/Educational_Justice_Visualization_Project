@@ -1,5 +1,5 @@
-install.packages("ggplot2")
-library(ggplot2)
+install.packages("dplyr")
+library(tidyr)
 
 US_climate_opinion <- read.csv("https://raw.githubusercontent.com/MichaelStickels/Educational_Justice_Visualization_Project/main/Data/Yale%20Climate%20Opintion%20Data/YCOM_2020_Data.csv")
 View(US_climate_opinion)
