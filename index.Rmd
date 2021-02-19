@@ -49,7 +49,7 @@ while the poverty line currently stands at an IPR of about 100.
 \  
 
 # Table Script
-```{r}
+```{r, include=FALSE}
 source("Table.R")
 ```
 We decided to include this table on Climate Education because it displays
