@@ -49,9 +49,16 @@ while the poverty line currently stands at an IPR of about 100.
 \  
 
 # Table Script
-#```{r}
-#source("Table.R")
-#```
+```{r}
+source("Table.R")
+```
+We decided to include this table on Climate Education because it displays
+the amount of approval that specific topics, such as global warning education
+or supporting the regulation of CO2 and gas emissions, can be correlated 
+to the approval of political factors such as supporting local officials or 
+the president. Furthermore, this table reflects how people in different states
+and counties may support or oppose certain issues and how this relates to the 
+rates of poverty or environmental education in a particular location. 
 
 \  
 
