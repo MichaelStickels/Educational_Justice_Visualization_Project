@@ -43,6 +43,6 @@ ggplot(state_shape) +
     size = .1        # thinly stroked
   ) +
   coord_map() + # use a map-based coordinate system
-  scale_fill_continuous(low = "Dark Grey", high = "Blue") +
+  scale_fill_continuous(low = "gray57", high = "Blue") +
   labs(fill = "CWIFT") +
   blank_theme # variable containing map styles (defined in next code snippet)
