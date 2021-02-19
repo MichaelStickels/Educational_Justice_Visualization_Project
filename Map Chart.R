@@ -18,7 +18,7 @@ cwift_state <- cwift_data %>%
 
 
 # Define a minimalist theme for maps
-blank_theme <- theme_bw() +
+map_theme <- theme_bw() +
   theme(
     axis.line = element_blank(),        # remove axis lines
     axis.text = element_blank(),        # remove axis labels
@@ -27,7 +27,8 @@ blank_theme <- theme_bw() +
     plot.background = element_blank(),  # remove gray background
     panel.grid.major = element_blank(), # remove major grid lines
     panel.grid.minor = element_blank(), # remove minor grid lines
-    panel.border = element_blank()      # remove border around plot
+    panel.border = element_blank(),     # remove border around plot
+    plot.title = element_text(hjust = 0.5)  # center title
   )
 
 
@@ -36,7 +37,7 @@ state_shape <- map_data("state") %>%
   left_join(cwift_state, by = "region")
 
 # Create a blank map of U.S. states
-ggplot(state_shape) +
+map_chart <- ggplot(state_shape) +
   geom_polygon(
     mapping = aes(x = long, y = lat, group = group, fill = ST_CWIFTEST),
     color = "white", # show state outlines
@@ -44,5 +45,7 @@ ggplot(state_shape) +
   ) +
   coord_map() + # use a map-based coordinate system
   scale_fill_continuous(low = "gray57", high = "Blue") +
-  labs(fill = "CWIFT") +
-  blank_theme # variable containing map styles (defined in next code snippet)
+  labs(fill = "CWIFT", title = "Comparable Wage Index for Teachers per U.S. State") +
+  map_theme # variable containing map styles (defined in next code snippet)
+
+plot(map_chart)
