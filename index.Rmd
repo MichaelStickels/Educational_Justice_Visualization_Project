@@ -84,3 +84,27 @@ country for more accurate comparisons. For instance, according to the CWIFT
 estimates, \$1 of education spending in Idaho buys more total value than \$1 in
 Washington. Unsurprisingly, we can see clearly from the chart that California,
 Washington, and New York have the highest cost indexes in the country.
+
+\
+
+# Poverty and Technology Chart
+\  
+```{r map_chart, echo = F, message = F, fig.width = 10}
+source("Poverty and Technology Chart.R")
+```
+The NCES data was used in this chart to compare the percentage of 
+households with a computer to the percentage of households under the poverty
+line in each district. We analyzed this data by state to look more closely at 
+how this data changed based on location. This data shows a general trend in most
+cases of districts with a higher percentage of households below the poverty 
+level having a lower percentage of households with a computer. In further 
+analysis, it would be interesting to see how this data correlated with education
+success such as high school or college graduation rates. The purpose of including
+the information as seen in the chart is to determine a baseline understanding
+of if these two variables correlate, and then we will be able to incorporate a
+deeper analysis based off this. We included these specific 9 states to show a 
+variety of west coast, east coast, and central states. After looking extensively
+through all the states by charting each of them with this data, we chose the 
+ones with stronger visible correlation to indicate that there may be a 
+relationship  between these variables,but in future analysis we would like to 
+include more states to ensure our data is unbiased.
