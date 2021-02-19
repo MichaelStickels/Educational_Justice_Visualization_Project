@@ -6,15 +6,11 @@ library(tidyr)
 library(dplyr)
 
 # Load in tables 
-Neighborhoods <- read.csv("https://raw.githubusercontent.com/MichaelStickels/Educational_Justice_Visualization_Project/main/Data/NCES%20Data/School%20Neighborhood%20
-  Poverty%20Estimates%20(2015-2016)/EDGE_SIDE1216_PUBSCHS1516.csv")
+Neighborhoods <- read.csv("https://raw.githubusercontent.com/MichaelStickels/Educational_Justice_Visualization_Project/main/Data/NCES%20Data/School%20Neighborhood%20Poverty%20Estimates%20(2015-2016)/EDGE_SIDE1216_PUBSCHS1516.csv")
 
-Economic <- read.csv("https://raw.githubusercontent.com/MichaelStickels/Educational_Justice_
-  Visualization_Project/main/Data/NCES%20Data/Selected%20Economic%20Characteristics%20of%20Relevant%20Children%20Enrolled%20
-  (Public%20and%20Private)%20(2014-2018)/CDP03_104_USSchoolDistrictAll.csv")
+Economic <- read.csv("https://raw.githubusercontent.com/MichaelStickels/Educational_Justice_Visualization_Project/main/Data/NCES%20Data/Selected%20Economic%20Characteristics%20of%20Relevant%20Children%20Enrolled%20(Public%20and%20Private)%20(2014-2018)/CDP03_104_USSchoolDistrictAll.csv")
 
-ComparableWageIndex <- read.delim("https://raw.githubusercontent.com/MichaelStickels/Educational_Justice_
-  Visualization_Project/main/Data/NCES%20Data/Comparable%20Wage%20Index%20for%20Teachers%20(2016)/EDGE_ACS_CWIFT2016_County.txt")
+ComparableWageIndex <- read.csv("https://raw.githubusercontent.com/MichaelStickels/Educational_Justice_Visualization_Project/main/Data/NCES%20Data/Comparable%20Wage%20Index%20for%20Teachers%20(2016)/EDGE_ACS_CWIFT2016_County.csv")
 
 YaleData <- read.csv("https://raw.githubusercontent.com/MichaelStickels/Educational_Justice_Visualization_Project/main/Data/Yale%20Climate%20Opintion%20Data/YCOM_2020_Data.csv")
 
@@ -44,9 +40,15 @@ summary_info$for_global_warming_edu <- YaleData %>%
   summarize(teachGW = mean(teachGW)) %>%
   select(teachGW)
 
-# Calculate neighborhood with max poverty estimate 
+# Calculate neighborhood with lowest poverty ratio 
 summary_info$max_pov_neighborhood <- Neighborhoods %>%
+  group_by(NAME) %>%
   filter(IPR_EST == max(IPR_EST)) %>%
+  pull(NAME, IPR_EST)
+
+# Calculate neighborhood with highest poverty ratio
+summary_info$min_pov_neighborhood <- Neighborhoods %>%
+  filter(IPR_EST == min(IPR_EST)) %>%
   select(NAME, IPR_EST)
 
 # Calculate mean poverty rate of Neighborhoods 

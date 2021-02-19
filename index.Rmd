@@ -27,16 +27,31 @@ protect the health and well-being of all communities.
 \  
 
 # Summary Information Script
-```{r}
+```{r, include=FALSE}
 source("Summary.R")
 ```
+For our summary information, we were interested in highlighting the poverty rates 
+and access to education that existed in specific communities. We were also interested 
+in learning how an access to education may affect the perspectives of different communities
+on environmental issues such as global warming. After calculating the number of different 
+school districts, counties, and neighborhoods that our data originated from, we were able to 
+dive into the percentage of people who supported environmental topics such as capping CO2 
+emissions and teaching children about global warming on a national, state, and county level using
+data from the Yale Climate Opinion Maps project. Our data represents 4,563 different locations
+across the country. About 61.8% of the national populations supports capping CO2 emissions
+while 73% of the population supports teaching about the concept of global warming in schools.
+Furthermore, we calculated the average income-to-poverty ratio of the neighborhoods depicted 
+in our dataset from the NCES which represents a spectrum of 0-999, the lower numbers 
+indicating more impoverished locations. We found that the minimum IPR was 35 while the highest
+was 986. We were also able to calculate the average IPR across the U.S. which falls at 293.83
+while the poverty line currently stands at an IPR of about 100. 
 
 \  
 
 # Table Script
-```{r}
-source("Table.R")
-```
+#```{r}
+#source("Table.R")
+#```
 
 \  
 
