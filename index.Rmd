@@ -2,7 +2,7 @@
 title: "Exploratory Analysis"
 output: html_document
 ---
-```{r, include=FALSE}
+```{r source, include=FALSE}
 source("Summary.R")
 source("Table.R")
 source("Poverty and Technology Chart.R")
@@ -38,7 +38,7 @@ protect the health and well-being of all communities.
 \  
 
 # Summary Information Script
-```{r, echo = FALSE}
+```{r summary, echo = FALSE}
 summary_info
 ```
 
@@ -61,7 +61,7 @@ while the poverty line currently stands at an IPR of about 100.
 \  
 
 # Table Script
-```{r, echo = FALSE}
+```{r table, echo = FALSE}
 EconAgg
 ```
 We decided to include this table on Climate Education because it displays
@@ -76,7 +76,7 @@ rates of poverty or environmental education in a particular location.
 
 # Map Chart
 \  
-```{r, echo = FALSE}
+```{r map, echo = FALSE}
 map_chart
 ```
 The **Comparable Wage Index for Teachers (CWIFT)** is a complex cost index
@@ -101,7 +101,7 @@ Washington, and New York have the highest cost indexes in the country.
 
 # Poverty and Technology Chart
 \  
-```{r, echo = FALSE}
+```{r poverty, echo = FALSE}
 computer_poverty
 ```
 The NCES data was used in this chart to compare the percentage of 
@@ -123,7 +123,7 @@ include more states to ensure our data is unbiased.
 
 # United States Climate Opinion Chart
 \  
-```{r, echo = FALSE}
+```{r climate, echo = FALSE}
 HAPPENING_PLOT
 ```
 The Yale Climate Opinion Maps project collects data about public opinion 
@@ -147,6 +147,6 @@ vary by up to 13%. Climate belief should be more consistent across the country,
 and in the future we would like to break down beliefs by county to better 
 understand the surrounding factors that may influence climate belief.
 
-```{r, echo = FALSE}
+```{r teach, echo = FALSE}
 TEACH_PLOT
 ```
