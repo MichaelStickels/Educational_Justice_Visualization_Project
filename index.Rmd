@@ -3,8 +3,8 @@ title: "Exploratory Analysis"
 output: html_document
 ---
 ```{r source, include=FALSE}
-source("Summary.R")
-source("SummaryTable.R")
+#source("Summary.R")
+#source("SummaryTable.R")
 source("PovertyAndTechnologyChart.R")
 source("MapChart.R")
 source("USClimateOpinionChart.R")
@@ -39,7 +39,7 @@ protect the health and well-being of all communities.
 
 # Summary Information
 ```{r summary, echo = FALSE}
-summary_info
+#summary_info
 ```
 
 For our summary information, we were interested in highlighting the poverty rates 
@@ -62,7 +62,7 @@ while the poverty line currently stands at an IPR of about 100.
 
 # Summary Table
 ```{r table, echo = FALSE}
-EconAgg
+#EconAgg
 ```
 We decided to include this table on Climate Education because it displays
 the amount of approval that specific topics, such as global warning education
