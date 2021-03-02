@@ -14,11 +14,16 @@ ComparableWageIndex <- read.csv("https://raw.githubusercontent.com/MichaelSticke
 YaleData <- read.csv("https://raw.githubusercontent.com/MichaelStickels/Educational_Justice_Visualization_Project
   /main/Data/Yale%20Climate%20Opintion%20Data/YCOM_2020_Data.csv")
 
-# Aggregated table of Yale Climate Data and create a table with the percentage of citizens who 
-# support certain topics 
+# Aggregated table of Yale Climate Data and create a table by state with percentage of citizens that want to teach 
+# students about global warming and support limiting CO2 emissions. 
 by_location <- YaleData %>%
-  group_by(GeoType)
-
+  filter(GeoType == "State") %>% 
+  group_by(GeoName) %>%
+  filter(teachGW == max(teachGW)) %>%
+  filter(CO2limits == max(CO2limits)) %>%
+  select(GeoName, CO2limits, teachGW)
+  
+  
 # Create a table using Yale Climate Opinion dataframe 
 Climate_Education <- YaleData %>%
   select(
@@ -37,7 +42,9 @@ Climate_Education <- YaleData %>%
     Support_Global_warming_edu = teachGW,
     Worried_for_Future = worried
   ) %>%
-  arrange(Location)
+  arrange(Location) %>%
+  top_n(10)
+
 
 # Group CWI dataframe by state 
 CWI_by_state <- ComparableWageIndex %>%
