@@ -4,10 +4,10 @@ output: html_document
 ---
 ```{r source, include=FALSE}
 source("Summary.R")
-source("Table.R")
-source("Poverty and Technology Chart.R")
-source("Map Chart.R")
-source("US CLIMATE OPINION.R")
+source("SummaryTable.R")
+source("PovertyAndTechnologyChart.R")
+source("MapChart.R")
+source("USClimateOpinionChart.R")
 ```
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -37,7 +37,7 @@ protect the health and well-being of all communities.
 
 \  
 
-# Summary Information Script
+# Summary Information
 ```{r summary, echo = FALSE}
 summary_info
 ```
@@ -60,7 +60,7 @@ while the poverty line currently stands at an IPR of about 100.
 
 \  
 
-# Table Script
+# Summary Table
 ```{r table, echo = FALSE}
 EconAgg
 ```

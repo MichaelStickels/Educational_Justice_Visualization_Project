@@ -60,5 +60,3 @@ summary_info$mean_pov_rate <- Neighborhoods %>%
 summary_info$mean_comp_wage <- ComparableWageIndex %>%
   summarize(CNTY_CWIFTEST = mean(CNTY_CWIFTEST)) %>%
   select(CNTY_CWIFTEST)
-
-

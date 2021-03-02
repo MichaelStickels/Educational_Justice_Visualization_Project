@@ -1,6 +1,9 @@
 # A table of aggregate information regarding the comparable wages of teachers 
 # in specific neighborhoods, school districts, and states. 
 
+library(dplyr)
+
+
 # Load in data frames 
 Neighborhoods <- read.csv("https://raw.githubusercontent.com/MichaelStickels/Educational_Justice_Visualization_Project/main/Data/NCES%20Data/School%20Neighborhood%20Poverty%20Estimates%20(2015-2016)/EDGE_SIDE1216_PUBSCHS1516.csv")
 
@@ -62,6 +65,8 @@ by_district <- Economic %>%
 EconAgg = aggregate(Economic, by = list(District = Economic$Geography, 
   Year = Economic$Year, CDP = Economic$CDP03_1moe),
   FUN = mean)
+
+EconAgg = head(EconAgg)
 
 
 
