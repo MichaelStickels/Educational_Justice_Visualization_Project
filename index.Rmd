@@ -3,8 +3,7 @@ title: "Exploratory Analysis"
 output: html_document
 ---
 ```{r source, include=FALSE}
-#source("Summary.R")
-#source("SummaryTable.R")
+source("SummaryTable.R")
 source("PovertyAndTechnologyChart.R")
 source("MapChart.R")
 source("USClimateOpinionChart.R")
@@ -39,7 +38,6 @@ protect the health and well-being of all communities.
 
 # Summary Information
 ```{r summary, echo = FALSE}
-#summary_info
 ```
 
 For our summary information, we were interested in highlighting the poverty rates 
@@ -62,15 +60,16 @@ while the poverty line currently stands at an IPR of about 100.
 
 # Summary Table
 ```{r table, echo = FALSE}
-#EconAgg
+education_cwift_table
 ```
-We decided to include this table on Climate Education because it displays
-the amount of approval that specific topics, such as global warning education
-or supporting the regulation of CO2 and gas emissions, can be correlated 
-to the approval of political factors such as supporting local officials or 
-the president. Furthermore, this table reflects how people in different states
-and counties may support or oppose certain issues and how this relates to the 
-rates of poverty or environmental education in a particular location. 
+We decided to include this table on Climate Education as compared to
+the Comparable Wage Index for Teachers because it displays important information
+on the amount of approval by state for global warming education
+and supporting the regulation of CO2 and gas emissions, which may be correlated 
+to differences in the regional variations of salaries for teachers in 
+different states. Furthermore, this table reflects how people in different states
+may support or oppose certain issues and how this relates to the rates of pay for 
+teachers and differences in access to environmental education in a particular state. 
 
 \  
 
