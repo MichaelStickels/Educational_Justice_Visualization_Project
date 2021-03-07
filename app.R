@@ -38,7 +38,7 @@ page_one <- tabPanel( #introduction page
     p("In this report, we want to answer:", 
       style = "font-size:25px;"),
     
-    h2("How does environmental attitudes impact environmental education?", 
+    h2("How do environmental attitudes indicate the effects of environmental education?", 
       style = "font-size:30px;"),
     p("Comparing data from Yale Climate Opinion Maps", 
       style = "font-size:20px;"),
@@ -67,6 +67,13 @@ page_one <- tabPanel( #introduction page
 page_two <- tabPanel( #chart 1 
     "Education/Attitudes",
         titlePanel("chart 1 page"),
+    h1("Is environmental education a popular public opinion?"),
+    p("Climate education in the United States is not well measured because of its
+      apparent political controversy. In these charts we compare the support for 
+      climate education in schools to other environmental policies to visualize
+      the priority of climate education within climate policy.",
+      style = "font-size:20px;"),
+    
 )
 
 
@@ -92,7 +99,7 @@ page_five <- tabPanel( #conclusion page
     p("In this report, we wanted to answer:", 
       style = "font-size:25px;"),
     
-    h2("How does environmental education impact environmental attitudes?", 
+    h2("How do environmental attitudes indicate the effects of environmental education?", 
        style = "font-size:30px;"),
     p("We found that abc xyz", 
       style = "font-size:20px;"),
