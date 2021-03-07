@@ -38,7 +38,7 @@ page_one <- tabPanel( #introduction page
     p("In this report, we want to answer:", 
       style = "font-size:25px;"),
     
-    h2("How does environmental education impact environmental attitudes?", 
+    h2("How does environmental attitudes impact environmental education?", 
       style = "font-size:30px;"),
     p("Comparing data from Yale Climate Opinion Maps", 
       style = "font-size:20px;"),
