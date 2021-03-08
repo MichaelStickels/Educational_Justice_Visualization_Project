@@ -19,7 +19,7 @@ We are studying how educational data highlights social injustices. Variables
 such as school amenities, school funding, graduation rate, dropout rate, and 
 more could demonstrate what districts are receiving disproportionately high
 or low support. We will investigate how primary and secondary education data 
-relates to post-secondary (post-graduation) education data.If able, we are also 
+relates to post-secondary (post-graduation) education data. If able, we are also 
 interested in analyzing how access to environmental education and outdoor spaces
 impacts students post-graduation (such impacts could include belief in climate 
 change). Social and environmental justice are connected because the impacts of
