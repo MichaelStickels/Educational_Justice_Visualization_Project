@@ -81,4 +81,3 @@ chart_data <- climate_geoid %>%
   summarize(happening = mean(happening),
             comp_rate_pct = mean(comp_rate_pct),
             pov_rate_pct = mean(pov_rate_pct))
-         
