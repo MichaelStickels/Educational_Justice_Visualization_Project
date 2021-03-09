@@ -33,5 +33,6 @@ funding_chart_data <- school_finance_data %>%
   summarize(GEOID = CONUM, ppspend = mean(TCURELSC / V33, na.rm = T)) %>%
   left_join(climate_op_state, by = 'GEOID') %>%
   left_join(cwift_county_select, by = 'GEOID') %>%
-  mutate(adjusted_spend = ppspend * CNTY_CWIFTEST)
+  mutate(adjusted_spend = ppspend * CNTY_CWIFTEST) %>%
+  filter_all(all_vars(!is.infinite(.)))
   

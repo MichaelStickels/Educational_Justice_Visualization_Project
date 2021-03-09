@@ -108,9 +108,22 @@ page_two <- tabPanel(  # >>>>>>>>>> Chart 2
   
   "Poverty/Attitudes",
   
-  titlePanel("chart 2 page"),
- 
-)      
+  sidebarLayout(
+    
+    sidebarPanel(
+      
+    ),
+    
+    mainPanel(
+plotlyOutput(outputId = "povertyclimateplot")
+
+    )
+
+  ),
+
+ p("")
+
+)
 
 page_three <- tabPanel( # >>>>>>>>>> Chart 3
   

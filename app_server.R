@@ -4,6 +4,10 @@
 #   Educational Justice and the Environment
 #
 
+
+source("app_data-prep.R")
+
+
 # Define server logic required to draw a histogram
 server <- function(input, output) {
   
@@ -157,8 +161,38 @@ server <- function(input, output) {
   
   
   
-  # [_____] Plot
+  # Poverty Climate Attitudes Plot
   # output$....
   
 }
+
+
+library(rjson)
+library(plotly)
+
+url <- 'https://raw.githubusercontent.com/plotly/datasets/master/geojson-counties-fips.json'
+counties <- rjson::fromJSON(file=url)
+url2<- "https://raw.githubusercontent.com/plotly/datasets/master/fips-unemp-16.csv"
+df <- read.csv(url2, colClasses=c(fips="character"))
+fig <- plot_ly() 
+fig <- fig %>% add_trace(
+  type="choroplethmapbox",
+  geojson=counties,
+  locations=funding_chart_data$GEOID,
+  z=funding_chart_data$ppspend,
+  colorscale="Viridis",
+  zmin=0,
+  zmax=12,
+  marker=list(line=list(
+    width=0),
+    opacity=0.5
+  )
+)
+fig <- fig %>% layout(
+  mapbox=list(
+    style="carto-positron",
+    zoom =2,
+    center=list(lon= -95.71, lat=37.09))
+)
+fig
 
