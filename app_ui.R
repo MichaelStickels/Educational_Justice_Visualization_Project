@@ -32,7 +32,7 @@ main_page <- tabPanel( # >>>>>>>>>> Introduction page
   
   br(),
   
-  h3("How does poverty levels impact environmental education attitudes?",
+  h3("How do poverty levels impact attitudes toward environmental education and regulations?",
      style = "font-size:30px;"),
   
   p("Comparing data from National Center for Education Statistics (NCES) and
@@ -104,13 +104,13 @@ page_one <- tabPanel( # >>>>>>>>>> Chart 1
 
 
 
-page_two <- tabPanel( # >>>>>>>>>> Chart 2
+page_two <- tabPanel(  # >>>>>>>>>> Chart 2
   
   "Poverty/Attitudes",
   
   titlePanel("chart 2 page"),
-  
-)    
+ 
+)      
 
 page_three <- tabPanel( # >>>>>>>>>> Chart 3
   
@@ -118,7 +118,7 @@ page_three <- tabPanel( # >>>>>>>>>> Chart 3
   
   titlePanel("chart 3 page"),
   
-)  
+)
 
 page_four <- tabPanel( # >>>>>>>>>>  Conclusion page
   

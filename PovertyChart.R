@@ -109,9 +109,15 @@ join_yale_codes <- left_join(yale_map_data, code_state, by = "region")
 join_yale_codes$state = tolower(join_yale_codes$state)
 
 maps_totals_data <- join_yale_codes %>%
-  select(abbrev = region, state_code, TotalPop, discuss, reducetax, CO2limits, localofficials, congress, 
-         president, corporations, citizens, regulate, supportRPS, drilloffshore, drillANWR, 
-         fundrenewables, gwvoteimp, teachGW, happening, worried, region = state)
+  select(abbrev = region, state_code, TotalPop, Support_Discussions = discuss, 
+         Support_Tax_Reductions = reducetax, Support_CO2_Limits = CO2limits, 
+         Support_Local_Officials = localofficials, Support_Congress = congress, 
+         Support_President = president, Support_Corporations = corporations, 
+         Support_Regulations = regulate, Support_Renewable_Standards = supportRPS, 
+         Support_Offshore_Drilling = drilloffshore, Support_Arctic_Drilling = drillANWR, 
+         Support_Funding_Renewables = fundrenewables, See_Global_Warming_as_Priority = gwvoteimp, 
+         Support_Teaching_Global_Warming = teachGW, Agree_Climate_Change_is_Happening = happening, 
+         Worried_About_Global_Warming = worried, region = state)
 
 map_shape_type <- map_data("state") %>%
   left_join(maps_totals_data, by = "region")
@@ -121,12 +127,12 @@ output$types_plot <- renderPlot({
   
   map_chart_types <- ggplot(data = map_shape_type) +
     geom_polygon(
-      mapping = aes(x = long, y = lat, group = group, fill = teachGW),
+      mapping = aes(x = long, y = lat, group = group, fill = input$type),
       color = "purple",
       size = .3
     ) +
     coord_map() +
-    scale_fill_continuous(low = "thistle1", high = "purple4") + 
+    scale_fill_continuous(low = "cadetblue1", high = "deepskyblue4") + 
     labs(fill = "% Support") +
     map_theme +
     ggtitle("Percentage of People Who Support ")
@@ -134,6 +140,31 @@ output$types_plot <- renderPlot({
   return(map_chart_types)
   
 })
+
+# Input for UI 
+map_chart_layout <- sidebarLayout(
+  sidebarPanel(
+    selectInput(
+      input = type,
+      label = "Choose an Aspect of Environmental Education",
+      choices = c(Support_Discussions, 
+                  Support_Tax_Reductions, Support_CO2_Limits, 
+                  Support_Local_Officials, Support_Congress, 
+                  Support_President, Support_Corporations, 
+                  Support_Regulations, Support_Renewable_Standards, 
+                  Support_Offshore_Drilling, Support_Arctic_Drilling, 
+                  Support_Funding_Renewables, See_Global_Warming_as_Priority, 
+                  Support_Teaching_Global_Warming, Agree_Climate_Change_is_Happening, 
+                  Worried_About_Global_Warming)
+    )
+  ),
+  mainPanel(plotOutput(outputId = "types_plot"))
+)
+
+
+
+
+
 
   
 

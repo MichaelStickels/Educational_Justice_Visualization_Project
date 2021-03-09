@@ -11,7 +11,6 @@ library(dplyr)
 library(tidyr)
 library(RColorBrewer)
 library(plotly)
-<<<<<<< HEAD
 library(shiny)
 
 # Define UI for application that draws a histogram
@@ -70,7 +69,7 @@ page_two <- tabPanel( #chart 1
       apparent political controversy. In these charts we compare the support for 
       climate education in schools to other environmental policies to visualize
       the priority of climate education within climate policy.",
-      style = "font-size:20px;"),
+      style = "font-size:20px;")
     
 )
 
@@ -83,10 +82,8 @@ page_three <- tabPanel( #chart 2
 
 page_four <- tabPanel( #chart 3 
     "Funding/Education",
-        titlePanel("chart 3 page"),
+        titlePanel("chart 3 page")
 )  
-=======
->>>>>>> 9bfd3851f9d0feeafaa2abf22fe7edfdf2db2ce6
 
 
 
