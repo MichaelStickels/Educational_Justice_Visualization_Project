@@ -167,22 +167,18 @@ server <- function(input, output) {
 }
 
 
-library(rjson)
-library(plotly)
 
 url <- 'https://raw.githubusercontent.com/plotly/datasets/master/geojson-counties-fips.json'
 counties <- rjson::fromJSON(file=url)
-url2<- "https://raw.githubusercontent.com/plotly/datasets/master/fips-unemp-16.csv"
-df <- read.csv(url2, colClasses=c(fips="character"))
 fig <- plot_ly() 
 fig <- fig %>% add_trace(
   type="choroplethmapbox",
   geojson=counties,
-  locations=funding_chart_data$GEOID,
+  locations=funding_chart_data$FIPS,
   z=funding_chart_data$ppspend,
   colorscale="Viridis",
-  zmin=0,
-  zmax=12,
+  #zmin=0,
+  #zmax=12,
   marker=list(line=list(
     width=0),
     opacity=0.5

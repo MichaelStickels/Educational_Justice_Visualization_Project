@@ -16,23 +16,32 @@ climate_op_data <- read.csv("https://raw.githubusercontent.com/MichaelStickels/E
 cwift_county <- read.csv("https://raw.githubusercontent.com/MichaelStickels/Educational_Justice_Visualization_Project/main/Data/NCES%20Data/Comparable%20Wage%20Index%20for%20Teachers%20(2016)/EDGE_ACS_CWIFT2016_County.csv")
 
 
-
+test <- school_finance_data %>%
+  select(V33)
 
 
 # Funding & Climate Opinion Chart Data
 climate_op_state <- climate_op_data %>%
-  select(GEOID, happening)
+  select(GeoType, GEOID, happening) %>%
+  filter(GeoType == "County") %>%
+  group_by(GEOID) %>%
+  summarize(happening)
 
 cwift_county_select <- cwift_county %>%
   select(CNTY_FIPS, CNTY_CWIFTEST) %>%
   summarize(GEOID = CNTY_FIPS, CNTY_CWIFTEST)
 
 funding_chart_data <- school_finance_data %>%
-  select(STATE, CONUM, TCURELSC , V33) %>%
+  select(STATE, CONUM, TCURINST  , V33) %>%
   group_by(CONUM) %>%
-  summarize(GEOID = CONUM, ppspend = mean(TCURELSC / V33, na.rm = T)) %>%
+  summarize(exp = mean(TCURINST ), students = mean(V33)) %>%
+  rename(GEOID = CONUM) %>%
+  mutate(ppspend = exp / students) %>%
+  filter(ppspend < 26) %>%
   left_join(climate_op_state, by = 'GEOID') %>%
   left_join(cwift_county_select, by = 'GEOID') %>%
-  mutate(adjusted_spend = ppspend * CNTY_CWIFTEST) %>%
-  filter_all(all_vars(!is.infinite(.)))
+  mutate(pp_adjusted_spend = ppspend * CNTY_CWIFTEST) %>%
+  mutate(FIPS = case_when(nchar(GEOID) == 4 ~ paste('0', GEOID, sep = ""),
+                          T ~ paste(GEOID)))
   
+         

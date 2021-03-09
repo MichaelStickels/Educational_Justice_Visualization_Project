@@ -7,6 +7,7 @@
 
 # Libraries
 library(leaflet)
+library(rjson)
 library(dplyr)
 library(tidyr)
 library(RColorBrewer)
