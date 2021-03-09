@@ -80,6 +80,7 @@ page_two <- tabPanel( #chart 1
 page_three <- tabPanel( #chart 2 
     "Poverty/Attitudes",
         titlePanel("chart 2 page"),
+    h1("How do poverty levels impact attitudes toward environmental education?")
 )    
 
 page_four <- tabPanel( #chart 3 

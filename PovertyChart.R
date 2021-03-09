@@ -1,4 +1,4 @@
-# Create a chart that answers the question: "How do poverty levels impact environmental education attitudes?"
+# Create a chart that answers the question: "How do poverty levels impact attitudes toward environmental education?"
 library(stringr)
 library(patchwork)
 library(mapproj)
@@ -54,7 +54,7 @@ average_ipr <- poverty_data_full %>%
 code_state <- state_codes %>% 
   select(region = state_abbreviation, state_code, state)
 
-# Create an interactive map chart that displays different attitudes on topics by state 
+# Create an interactive map chart that displays IPR by state 
 join_ipr_codes <- left_join(average_ipr, code_state, by = "region")
 
 join_ipr_codes$state = tolower(join_ipr_codes$state)
@@ -62,7 +62,7 @@ join_ipr_codes$state = tolower(join_ipr_codes$state)
 maps_totals_data <- join_ipr_codes %>%
   select(IPR_AVG, abbrev = region, state_code, region = state)
 
-map_shape <- map_data("state") %>%
+map_shape_ipr <- map_data("state") %>%
   left_join(maps_totals_data, by = "region")
 
 # Define a minimalist theme 
@@ -81,14 +81,14 @@ map_theme <- theme_bw() +
 # Map chart displaying average IPR in each state 
 output$plot <- renderPlot({
   
-  map_chart_ipr <- ggplot(data = map_shape) +
+  map_chart_ipr <- ggplot(data = map_shape_ipr) +
   geom_polygon(
     mapping = aes(x = long, y = lat, group = group, fill = IPR_AVG),
-    color = "blue",
+    color = "purple",
     size = .3
   ) +
   coord_map() +
-  scale_fill_continuous(low = "aliceblue", high = "steelblue4") + 
+  scale_fill_continuous(low = "thistle1", high = "purple4") + 
   labs(fill = "Average IPR") +
   map_theme +
   ggtitle("Average Income-to-Poverty Ratio (IPR) by State")
@@ -98,6 +98,42 @@ return(map_chart_ipr)
 })
 
 
+# Create an interactive map chart that displays different attitudes by state 
+yale_map_data <- yale_by_state %>%
+  select(region = GeoName, TotalPop, discuss, reducetax, CO2limits, localofficials, congress, 
+         president, corporations, citizens, regulate, supportRPS, drilloffshore, drillANWR, 
+         fundrenewables, gwvoteimp, teachGW, happening, worried)
+
+join_yale_codes <- left_join(yale_map_data, code_state, by = "region")
+
+join_yale_codes$state = tolower(join_yale_codes$state)
+
+maps_totals_data <- join_yale_codes %>%
+  select(abbrev = region, state_code, TotalPop, discuss, reducetax, CO2limits, localofficials, congress, 
+         president, corporations, citizens, regulate, supportRPS, drilloffshore, drillANWR, 
+         fundrenewables, gwvoteimp, teachGW, happening, worried, region = state)
+
+map_shape_type <- map_data("state") %>%
+  left_join(maps_totals_data, by = "region")
+
+# Map chart displaying average IPR in each state 
+output$types_plot <- renderPlot({
+  
+  map_chart_types <- ggplot(data = map_shape_type) +
+    geom_polygon(
+      mapping = aes(x = long, y = lat, group = group, fill = teachGW),
+      color = "purple",
+      size = .3
+    ) +
+    coord_map() +
+    scale_fill_continuous(low = "thistle1", high = "purple4") + 
+    labs(fill = "% Support") +
+    map_theme +
+    ggtitle("Percentage of People Who Support ")
+  
+  return(map_chart_types)
+  
+})
 
   
 
