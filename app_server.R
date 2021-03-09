@@ -168,14 +168,18 @@ server <- function(input, output) {
 
 
 
+
+
+# >>>>>>>>>> Map Chart Testing
+
 url <- 'https://raw.githubusercontent.com/plotly/datasets/master/geojson-counties-fips.json'
 counties <- rjson::fromJSON(file=url)
 fig <- plot_ly() 
 fig <- fig %>% add_trace(
   type="choroplethmapbox",
   geojson=counties,
-  locations=funding_chart_data$FIPS,
-  z=funding_chart_data$ppspend,
+  locations=chart_data$GEOID,
+  z=chart_data$pov_rate_pct,
   colorscale="Viridis",
   #zmin=0,
   #zmax=12,
@@ -190,7 +194,14 @@ fig <- fig %>% layout(
     zoom =2,
     center=list(lon= -95.71, lat=37.09))
 )
+
 fig
+
+
+
+
+
+# >>>>>>>>>> Facet correlation testing
 
 library(plotly)
 set.seed(123)

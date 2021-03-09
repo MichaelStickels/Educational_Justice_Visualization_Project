@@ -76,7 +76,7 @@ climate_geoid <- climate_op_data %>%
 chart_data <- climate_geoid %>%
   left_join(state_join, by = 'GEOID') %>%
   left_join(state_join2, by = 'GEOID') %>%
-  drop_na() %>%
+ # drop_na() %>%
   group_by(GEOID, GeoName, state) %>%
   summarize(happening = mean(happening),
             comp_rate_pct = mean(comp_rate_pct),
