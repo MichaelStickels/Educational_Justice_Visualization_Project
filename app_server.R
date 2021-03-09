@@ -14,38 +14,38 @@ server <- function(input, output) {
   # [_____] Plot
   output$policy_plot <-  renderPlotly({ 
     
-    US_climate_opinion <- US_climate_opinion [-c(1,53:4563), ] 
+    climate_op_data <- climate_op_data [-c(1,53:4563), ] 
     
-    US_climate_opinion <- select(US_climate_opinion, GeoName, fundrenewables,
+    climate_op_data <- select(climate_op_data, GeoName, fundrenewables,
                                  regulate, reducetax, drilloffshore, teachGW, )
     
-    colnames(US_climate_opinion) <- c("State", "Funding Research for Renewable Energy", 
+    colnames(climate_op_data) <- c("State", "Funding Research for Renewable Energy", 
                                       "Regulating CO2", "Carbon Tax", 
                                       "Offshore Drilling", "Teaching Global Warming")
     
     # chart1_radio 
     
     if(input$chart1_radio == 1){
-      US_climate_opinion <- US_climate_opinion 
+      climate_op_data <- climate_op_data 
     }
     if (input$chart1_radio == 2){
-      US_climate_opinion <- US_climate_opinion %>% 
+      climate_op_data <- climate_op_data %>% 
         select("State", "Teaching Global Warming", "Carbon Tax")
     }
     if (input$chart1_radio == 3){
-      US_climate_opinion <- US_climate_opinion %>% 
+      climate_op_data <- climate_op_data %>% 
         select("State", "Teaching Global Warming", "Funding Research for Renewable Energy")
     }
     if (input$chart1_radio == 4){
-      US_climate_opinion <- US_climate_opinion %>% 
+      climate_op_data <- climate_op_data %>% 
         select("State", "Teaching Global Warming", "Offshore Drilling")
     }
     if (input$chart1_radio == 5){
-      US_climate_opinion <- US_climate_opinion %>% 
+      climate_op_data <- climate_op_data %>% 
         select("State", "Teaching Global Warming", "Regulating CO2")
     }
     
-    climate_policy_support <- gather(US_climate_opinion, key = policy, value = percent,
+    climate_policy_support <- gather(climate_op_data, key = policy, value = percent,
                                      -State)
     #plot climate support data
     psp <- ggplot(data = climate_policy_support, aes(x = State, 
