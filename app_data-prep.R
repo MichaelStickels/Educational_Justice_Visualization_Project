@@ -43,5 +43,21 @@ funding_chart_data <- school_finance_data %>%
   mutate(pp_adjusted_spend = ppspend * CNTY_CWIFTEST) %>%
   mutate(FIPS = case_when(nchar(GEOID) == 4 ~ paste('0', GEOID, sep = ""),
                           T ~ paste(GEOID)))
-  
+# Load in datasets
+data_cdp03 <- read.csv("https://raw.githubusercontent.com/MichaelStickels/Educational_Justice_Visualization_Project/main/Data/NCES%20Data/Selected%20Economic%20Characteristics%20of%20Relevant%20Children%20Enrolled%20(Public%20and%20Private)%20(2014-2018)/CDP03_104_USSchoolDistrictAll.csv")
+data_cdp02 <- read.csv("https://raw.githubusercontent.com/MichaelStickels/Educational_Justice_Visualization_Project/main/Data/NCES%20Data/CDP02%20SELECTED%20SOCIAL%20CHARACTERISTICS%20OF%20CHILDREN%20IN%20THE%20UNITED%20STATES/CDP02_105_USSchoolDistrictAll_21824157365.csv")
+fips_data <- read.csv("https://raw.githubusercontent.com/MichaelStickels/Educational_Justice_Visualization_Project/main/Data/FIPS_State_Codes.csv")
+
+# Join and mutate data
+state_join <- data_cdp02 %>%
+  select(GeoId, CDP02_93pct) %>%
+  mutate(state_code = as.integer(substr(GeoId, 8, 9))) %>%
+  left_join(fips_data)
+state_join2 <- data_cdp03 %>%
+  select(GeoId, CDP03_54pct) %>%
+  mutate(state_code = as.integer(substr(GeoId, 8, 9))) %>%
+  left_join(fips_data)
+
+chart_data <- state_join %>%
+  left_join(state_join2)
          
