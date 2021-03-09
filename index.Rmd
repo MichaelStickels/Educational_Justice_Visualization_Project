@@ -3,12 +3,14 @@ title: "Exploratory Analysis"
 output: html_document
 ---
 ```{r source, include=FALSE}
+source("Summary.R")
 source("SummaryTable.R")
 source("PovertyAndTechnologyChart.R")
 source("MapChart.R")
 source("USClimateOpinionChart.R")
 ```
 ```{r setup, include=FALSE}
+library(knitr)
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -17,7 +19,7 @@ We are studying how educational data highlights social injustices. Variables
 such as school amenities, school funding, graduation rate, dropout rate, and 
 more could demonstrate what districts are receiving disproportionately high
 or low support. We will investigate how primary and secondary education data 
-relates to post-secondary (post-graduation) education data.If able, we are also 
+relates to post-secondary (post-graduation) education data. If able, we are also 
 interested in analyzing how access to environmental education and outdoor spaces
 impacts students post-graduation (such impacts could include belief in climate 
 change). Social and environmental justice are connected because the impacts of
@@ -30,46 +32,46 @@ environmental injustices. We believe that education data may highlight many of
 these injustices and we are interested in uncovering some these problems. It is 
 critical that we continue uncovering social and environmental injustices to 
 protect the health and well-being of all communities.
-```{r}
 
-```
-
-\  
 
 # Summary Information
-```{r summary, echo = FALSE}
-```
 
-For our summary information, we were interested in highlighting the poverty rates 
-and access to education that existed in specific communities. We were also interested 
-in learning how an access to education may affect the perspectives of different communities
-on environmental issues such as global warming. After calculating the number of different 
-school districts, counties, and neighborhoods that our data originated from, we were able to 
-dive into the percentage of people who supported environmental topics such as capping CO2 
-emissions and teaching children about global warming on a national, state, and county level using
-data from the Yale Climate Opinion Maps project. Our data represents 4,563 different locations
-across the country. About 61.8% of the national populations supports capping CO2 emissions
-while 73% of the population supports teaching about the concept of global warming in schools.
-Furthermore, we calculated the average income-to-poverty ratio of the neighborhoods depicted 
-in our dataset from the NCES which represents a spectrum of 0-999, the lower numbers 
-indicating more impoverished locations. We found that the minimum IPR was 35 while the highest
-was 986. We were also able to calculate the average IPR across the U.S. which falls at 293.83
-while the poverty line currently stands at an IPR of about 100. 
+For our summary information, we were interested in highlighting the poverty
+rates and access to education that exists in specific communities. We were also
+interested in learning how an access to education may affect the perspectives of
+different communities on environmental issues such as climate change. After
+calculating the number of different school districts, counties, and
+neighborhoods in our data, we were able to dive into the percentage of people
+who supported environmental topics such as capping CO2 emissions and teaching
+children about climate change on a national, state, and county level using data
+from the Yale Climate Opinion Project. Our data represents `r total_counties`
+different counties across the country. About `r support_co2_limits` of the
+national populations supports capping CO2 emissions while
+`r for_global_warming_edu` of the population supports teaching about the concept
+of climate change in schools. Furthermore, we calculated the average
+income-to-poverty ratio of the neighborhoods depicted in our dataset from the
+NCES, which is depicted as a range from 0-999, the lower numbers indicating more
+impoverished locations. We found that the minimum IPR was
+`r min_pov_neighborhood` while the highest was `r max_pov_neighborhood`. We were
+also able to calculate the average IPR across the U.S. which falls at
+`r mean_pov_rate` while the poverty line currently stands at an IPR of about
+100. 
 
 \  
 
 # Summary Table
 ```{r table, echo = FALSE}
-education_cwift_table
+kable(education_cwift_table)
 ```
-We decided to include this table on Climate Education as compared to
-the Comparable Wage Index for Teachers because it displays important information
-on the amount of approval by state for global warming education
-and supporting the regulation of CO2 and gas emissions, which may be correlated 
-to differences in the regional variations of salaries for teachers in 
-different states. Furthermore, this table reflects how people in different states
-may support or oppose certain issues and how this relates to the rates of pay for 
-teachers and differences in access to environmental education in a particular state. 
+
+We decided to include this table on Climate Education as compared to the
+Comparable Wage Index for Teachers because it displays important information on
+the amount of approval by state for climate change education and supporting the
+regulation of CO2 and gas emissions, which may be correlated to differences in
+the regional variations of salaries for teachers in different states.
+Furthermore, this table reflects how people in different states may support or
+oppose certain issues and how this relates to the rates of pay for teachers and
+differences in access to environmental education in a particular state. 
 
 \  
 
@@ -78,6 +80,7 @@ teachers and differences in access to environmental education in a particular st
 ```{r map, echo = FALSE}
 map_chart
 ```
+
 The **Comparable Wage Index for Teachers (CWIFT)** is a complex cost index
 estimate generated by the National Center for Education Statistics (NCES) to
 allow researchers to adjust education finance data for comparison across
@@ -103,6 +106,7 @@ Washington, and New York have the highest cost indexes in the country.
 ```{r poverty, echo = FALSE}
 computer_poverty
 ```
+
 The NCES data was used in this chart to compare the percentage of 
 households with a computer to the percentage of households under the poverty
 line in each district. We analyzed this data by state to look more closely at 
@@ -110,21 +114,22 @@ how this data changed based on location. This data shows a general trend in most
 cases of districts with a higher percentage of households below the poverty 
 level having a lower percentage of households with a computer. In further 
 analysis, it would be interesting to see how this data correlated with education
-success such as high school or college graduation rates. The purpose of including
-the information as seen in the chart is to determine a baseline understanding
-of if these two variables correlate, and then we will be able to incorporate a
-deeper analysis based off this. We included these specific 9 states to show a 
-variety of west coast, east coast, and central states. After looking extensively
-through all the states by charting each of them with this data, we chose the 
-ones with stronger visible correlation to indicate that there may be a 
-relationship  between these variables,but in future analysis we would like to 
-include more states to ensure our data is unbiased.
+success such as high school or college graduation rates. The purpose of
+including the information as seen in the chart is to determine a baseline
+understanding of if these two variables correlate, and then we will be able to
+incorporate a deeper analysis based off this. We included these specific 9
+states to show a variety of west coast, east coast, and central states. After
+looking extensively through all the states by charting each of them with this
+data, we chose the ones with stronger visible correlation to indicate that there
+may be a relationship  between these variables,but in future analysis we would
+like to include more states to ensure our data is unbiased.
 
 # United States Climate Opinion Chart
 \  
 ```{r climate, echo = FALSE}
 HAPPENING_PLOT
 ```
+
 The Yale Climate Opinion Maps project collects data about public opinion 
 regarding climate belief and policy support. This chart organizes the data by 
 state about whether or not climate change is currently happening. It shows that 
@@ -136,10 +141,10 @@ poverty rates, and education in each state can have an effect on climate belief.
 This chart may also suggest how geography can play a role in climate belief. 
 Organizing this information by state is also useful for analyzing policy support
 and action taken by local governments. A second chart is included that shows 
-public opinion by state regarding whether or not global warming should be taught
+public opinion by state regarding whether or not climate change should be taught
 in schools, to which the states with the highest percent of climate denial
 are (not surprisingly) also the states with the highest percent of opposition to 
-teaching global warming in schools. Overall, these charts illustrating climate
+teaching climate change in schools. Overall, these charts illustrating climate
 belief in the United States shows that climate denial can be as high as 25% in 
 certain states, as low as 12% in other states, meaning the opinion of the states 
 vary by up to 13%. Climate belief should be more consistent across the country, 
