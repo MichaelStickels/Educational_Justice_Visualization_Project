@@ -5,9 +5,12 @@
 #
 
 
+
 # *************** Pages *************** #
 
-main_page <- tabPanel( # >>>>>>>>>> Introduction page
+
+
+main_page <- tabPanel( # >>>>>>>>>>>>>>>>>>>> Introduction page
   
   "Introduction",
   
@@ -51,7 +54,9 @@ main_page <- tabPanel( # >>>>>>>>>> Introduction page
 )
 
 
-page_one <- tabPanel( # >>>>>>>>>> Chart 1 
+
+
+page_one <- tabPanel( # >>>>>>>>>>>>>>>>>>>> Chart 1 
   
   "Education/Attitudes",
   
@@ -104,7 +109,7 @@ page_one <- tabPanel( # >>>>>>>>>> Chart 1
 
 
 
-page_two <- tabPanel(  # >>>>>>>>>> Chart 2
+page_two <- tabPanel(  # >>>>>>>>>>>>>>>>>>>> Chart 2
   
   "Poverty/Attitudes",
   
@@ -125,7 +130,10 @@ plotlyOutput(outputId = "povertyclimateplot")
 
 )
 
-page_three <- tabPanel( # >>>>>>>>>> Chart 3
+
+
+
+page_three <- tabPanel( # >>>>>>>>>>>>>>>>>>>> Chart 3
   
   "Funding/Education",
   
@@ -133,7 +141,10 @@ page_three <- tabPanel( # >>>>>>>>>> Chart 3
   
 )
 
-page_four <- tabPanel( # >>>>>>>>>>  Conclusion page
+
+
+
+page_four <- tabPanel( # >>>>>>>>>>>>>>>>>>>>  Conclusion page
   
   "Conclusion",
   
@@ -175,7 +186,10 @@ page_four <- tabPanel( # >>>>>>>>>>  Conclusion page
 
 
 
+
 # **************** UI **************** #
+
+
 
 ui <- navbarPage(
   

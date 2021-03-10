@@ -24,7 +24,8 @@ fips_data <- read.csv("https://raw.githubusercontent.com/MichaelStickels/Educati
 
 
 
-# Funding & Climate Opinion Chart Data
+# >>>>>>>>>>>>>>>>>>>> Funding & Climate Opinion Chart Data
+
 climate_op_state <- climate_op_data %>%
   select(GeoType, GEOID, happening) %>%
   filter(GeoType == "County") %>%
@@ -81,3 +82,9 @@ chart_data <- climate_geoid %>%
   summarize(happening = mean(happening),
             comp_rate_pct = mean(comp_rate_pct),
             pov_rate_pct = mean(pov_rate_pct))
+
+
+
+
+# >>>>>>>>>>>>>>>>>>>>
+
