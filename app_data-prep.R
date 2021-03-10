@@ -6,18 +6,43 @@
 
 
 
+# Data Load Helper Function (removes line breaks from links/paths)
+read.csv3 <- function(dir,debug=TRUE) {
+  read.csv(gsub("\\n *","",dir))
+}
+
+
 # Load data
-school_finance_data <- read.csv("https://raw.githubusercontent.com/MichaelStickels/Educational_Justice_Visualization_Project/main/Data/US%20Census%202018%20school%20finance%20data/elsec18.csv")
+school_finance_data <- read.csv3("https://raw.githubusercontent.com/MichaelStick
+                                 els/Educational_Justice_Visualization_Project/m
+                                 ain/Data/US%20Census%202018%20school%20finance%
+                                 20data/elsec18.csv")
 
-climate_op_data <- read.csv("https://raw.githubusercontent.com/MichaelStickels/Educational_Justice_Visualization_Project/main/Data/Yale%20Climate%20Opintion%20Data/YCOM_2020_Data.csv")
+climate_op_data <- read.csv3("https://raw.githubusercontent.com/MichaelStickels/
+                             Educational_Justice_Visualization_Project/main/Data
+                             /Yale%20Climate%20Opintion%20Data/YCOM_2020_Data.cs
+                             v")
 
-cwift_county <- read.csv("https://raw.githubusercontent.com/MichaelStickels/Educational_Justice_Visualization_Project/main/Data/NCES%20Data/Comparable%20Wage%20Index%20for%20Teachers%20(2016)/EDGE_ACS_CWIFT2016_County.csv")
+cwift_county <- read.csv3("https://raw.githubusercontent.com/MichaelStickels/Edu
+                          cational_Justice_Visualization_Project/main/Data/NCES%
+                          20Data/Comparable%20Wage%20Index%20for%20Teachers%20(2
+                          016)/EDGE_ACS_CWIFT2016_County.csv")
 
-data_cdp03 <- read.csv("https://raw.githubusercontent.com/MichaelStickels/Educational_Justice_Visualization_Project/main/Data/NCES%20Data/Selected%20Economic%20Characteristics%20of%20Relevant%20Children%20Enrolled%20(Public%20and%20Private)%20(2014-2018)/CDP03_104_USSchoolDistrictAll.csv")
+data_cdp03 <- read.csv3("https://raw.githubusercontent.com/MichaelStickels/Educa
+                        tional_Justice_Visualization_Project/main/Data/NCES%20Da
+                        ta/Selected%20Economic%20Characteristics%20of%20Relevant
+                        %20Children%20Enrolled%20(Public%20and%20Private)%20(201
+                        4-2018)/CDP03_104_USSchoolDistrictAll.csv")
 
-data_cdp02 <- read.csv("https://raw.githubusercontent.com/MichaelStickels/Educational_Justice_Visualization_Project/main/Data/NCES%20Data/CDP02%20SELECTED%20SOCIAL%20CHARACTERISTICS%20OF%20CHILDREN%20IN%20THE%20UNITED%20STATES/CDP02_105_USSchoolDistrictAll_21824157365.csv")
+data_cdp02 <- read.csv3("https://raw.githubusercontent.com/MichaelStickels/Educa
+                        tional_Justice_Visualization_Project/main/Data/NCES%20Da
+                        ta/CDP02%20SELECTED%20SOCIAL%20CHARACTERISTICS%20OF%20CH
+                        ILDREN%20IN%20THE%20UNITED%20STATES/CDP02_105_USSchoolDi
+                        strictAll_21824157365.csv")
 
-fips_data <- read.csv("https://raw.githubusercontent.com/MichaelStickels/Educational_Justice_Visualization_Project/main/Data/FIPS_State_Codes.csv")
+fips_data <- read.csv3("https://raw.githubusercontent.com/MichaelStickels/Educat
+                       ional_Justice_Visualization_Project/main/Data/FIPS_State_
+                       Codes.csv")
 
 
 
