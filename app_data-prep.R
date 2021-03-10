@@ -47,67 +47,77 @@ fips_data <- read.csv3("https://raw.githubusercontent.com/MichaelStickels/Educat
 
 
 
+# >>>>>>>>>>>>>>>>>>>> Climate Opinion & Poverty Chart Data
+
+climate_op_data_a <- climate_op_data [-c(1,53:4563), ] %>%
+  select(GeoName, fundrenewables, regulate, reducetax, drilloffshore, teachGW)
+
+colnames(climate_op_data_a) <- c("State", "Funding Research for Renewable Energy", 
+                               "Regulating CO2", "Carbon Tax", 
+                               "Offshore Drilling", "Teaching Global Warming")
+
+
 
 
 # >>>>>>>>>>>>>>>>>>>> Funding & Climate Opinion Chart Data
 
-climate_op_state <- climate_op_data %>%
-  select(GeoType, GEOID, happening) %>%
-  filter(GeoType == "County") %>%
-  group_by(GEOID) %>%
-  summarize(happening)
-
-cwift_county_select <- cwift_county %>%
-  select(CNTY_FIPS, CNTY_CWIFTEST) %>%
-  summarize(GEOID = CNTY_FIPS, CNTY_CWIFTEST)
-
-funding_chart_data <- school_finance_data %>%
-  select(STATE, CONUM, TCURINST  , V33) %>%
-  group_by(CONUM) %>%
-  summarize(exp = mean(TCURINST ), students = mean(V33)) %>%
-  rename(GEOID = CONUM) %>%
-  mutate(ppspend = exp / students) %>%
-  filter(ppspend < 26) %>%
-  left_join(climate_op_state, by = 'GEOID') %>%
-  left_join(cwift_county_select, by = 'GEOID') %>%
-  mutate(pp_adjusted_spend = ppspend * CNTY_CWIFTEST) %>%
-  mutate(FIPS = case_when(nchar(GEOID) == 4 ~ paste('0', GEOID, sep = ""),
-                          T ~ paste(GEOID)))
-
-
-
-state_join <- data_cdp02 %>%
-  select(GeoId, CDP02_93pct) %>%
-  rename(comp_rate_pct = CDP02_93pct) %>%
-  mutate(state_code = as.integer(substr(GeoId, 8, 9))) %>%
-  mutate(GEOID = substr(GeoId, 8, 12)) %>%
-  left_join(fips_data, by = 'state_code') %>%
-  select(state, GEOID, comp_rate_pct)
-
-state_join2 <- data_cdp03 %>%
-  select(GeoId, CDP03_54pct) %>%
-  rename(pov_rate_pct = CDP03_54pct) %>%
-  mutate(state_code = as.integer(substr(GeoId, 8, 9))) %>%
-  mutate(GEOID = substr(GeoId, 8, 12)) %>%
-  left_join(fips_data, by = 'state_code') %>%
-  select(GEOID, pov_rate_pct)
-
-climate_geoid <- climate_op_data %>%
-  filter(GeoType == "County") %>%
-  select(GEOID, GeoName, happening) %>%
-  mutate(GEOID = case_when(nchar(GEOID) == 4 ~ paste('0', GEOID, sep = ""),
-                           T ~ paste(GEOID))) %>%
-  mutate(GeoName = sub("\\,.*", "", GeoName))
-
-chart_data <- climate_geoid %>%
-  left_join(state_join, by = 'GEOID') %>%
-  left_join(state_join2, by = 'GEOID') %>%
- # drop_na() %>%
-  group_by(GEOID, GeoName, state) %>%
-  summarize(happening = mean(happening),
-            comp_rate_pct = mean(comp_rate_pct),
-            pov_rate_pct = mean(pov_rate_pct))
-
+# climate_op_state <- climate_op_data %>%
+#   select(GeoType, GEOID, happening) %>%
+#   filter(GeoType == "County") %>%
+#   group_by(GEOID) %>%
+#   summarize(happening)
+# 
+# cwift_county_select <- cwift_county %>%
+#   select(CNTY_FIPS, CNTY_CWIFTEST) %>%
+#   summarize(GEOID = CNTY_FIPS, CNTY_CWIFTEST)
+# 
+# funding_chart_data <- school_finance_data %>%
+#   select(STATE, CONUM, TCURINST  , V33) %>%
+#   group_by(CONUM) %>%
+#   summarize(exp = mean(TCURINST ), students = mean(V33)) %>%
+#   rename(GEOID = CONUM) %>%
+#   mutate(ppspend = exp / students) %>%
+#   filter(ppspend < 26) %>%
+#   left_join(climate_op_state, by = 'GEOID') %>%
+#   left_join(cwift_county_select, by = 'GEOID') %>%
+#   mutate(pp_adjusted_spend = ppspend * CNTY_CWIFTEST) %>%
+#   mutate(FIPS = case_when(nchar(GEOID) == 4 ~ paste('0', GEOID, sep = ""),
+#                           T ~ paste(GEOID)))
+# 
+# 
+# 
+# state_join <- data_cdp02 %>%
+#   select(GeoId, CDP02_93pct) %>%
+#   rename(comp_rate_pct = CDP02_93pct) %>%
+#   mutate(state_code = as.integer(substr(GeoId, 8, 9))) %>%
+#   mutate(GEOID = substr(GeoId, 8, 12)) %>%
+#   left_join(fips_data, by = 'state_code') %>%
+#   select(state, GEOID, comp_rate_pct)
+# 
+# state_join2 <- data_cdp03 %>%
+#   select(GeoId, CDP03_54pct) %>%
+#   rename(pov_rate_pct = CDP03_54pct) %>%
+#   mutate(state_code = as.integer(substr(GeoId, 8, 9))) %>%
+#   mutate(GEOID = substr(GeoId, 8, 12)) %>%
+#   left_join(fips_data, by = 'state_code') %>%
+#   select(GEOID, pov_rate_pct)
+# 
+# climate_geoid <- climate_op_data %>%
+#   filter(GeoType == "County") %>%
+#   select(GEOID, GeoName, happening) %>%
+#   mutate(GEOID = case_when(nchar(GEOID) == 4 ~ paste('0', GEOID, sep = ""),
+#                            T ~ paste(GEOID))) %>%
+#   mutate(GeoName = sub("\\,.*", "", GeoName))
+# 
+# chart_data <- climate_geoid %>%
+#   left_join(state_join, by = 'GEOID') %>%
+#   left_join(state_join2, by = 'GEOID') %>%
+#  # drop_na() %>%
+#   group_by(GEOID, GeoName, state) %>%
+#   summarize(happening = mean(happening),
+#             comp_rate_pct = mean(comp_rate_pct),
+#             pov_rate_pct = mean(pov_rate_pct))
+# 
 
 
 

@@ -5,6 +5,7 @@
 #
 
 
+
 # Libraries
 library(leaflet)
 library(rjson)
@@ -13,6 +14,7 @@ library(tidyr)
 library(RColorBrewer)
 library(plotly)
 library(shiny)
+library(ggplot2)
 
 
 
