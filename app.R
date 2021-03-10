@@ -15,6 +15,7 @@ library(RColorBrewer)
 library(plotly)
 library(shiny)
 library(ggplot2)
+library(scales)
 
 
 

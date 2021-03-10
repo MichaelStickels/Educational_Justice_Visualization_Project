@@ -22,19 +22,19 @@ server <- function(input, output) {
     if(input$chart1_radio == 1){
       climate_op_data2 <- climate_op_data_a 
     }
-    if (input$chart1_radio == 2){
+    else if (input$chart1_radio == 2){
       climate_op_data2 <- climate_op_data_a %>% 
         select("State", "Teaching Global Warming", "Carbon Tax")
     }
-    if (input$chart1_radio == 3){
+    else if (input$chart1_radio == 3){
       climate_op_data2 <- climate_op_data_a %>% 
         select("State", "Teaching Global Warming", "Funding Research for Renewable Energy")
     }
-    if (input$chart1_radio == 4){
+    else if (input$chart1_radio == 4){
       climate_op_data2 <- climate_op_data_a %>% 
         select("State", "Teaching Global Warming", "Offshore Drilling")
     }
-    if (input$chart1_radio == 5){
+    else if (input$chart1_radio == 5){
       climate_op_data2 <- climate_op_data_a %>% 
         select("State", "Teaching Global Warming", "Regulating CO2")
     }
@@ -42,19 +42,27 @@ server <- function(input, output) {
     climate_policy_support <- gather(climate_op_data2, key = policy, value = percent,
                                      -State)
     
+    climate_policy_support_mean <- climate_policy_support %>%
+      group_by(policy) %>%
+      summarize(mean = mean(percent))
+    
     #plot climate support data
-    psp <- ggplot(data = climate_policy_support, aes(x = State, 
-                                                     y = percent, color = policy)) + 
-      geom_line(aes(group  =  policy)) +
-      scale_colour_brewer(palette = "Dark2") +
-      theme(axis.text.x = element_text(angle = 90)) +
+    policy_support_plot <- ggplot(data = climate_policy_support, aes(x = State, y = percent, color = policy)) +
+      geom_point(size = 2) +
+      #geom_segment(aes(x = State, xend = State, y = (min(climate_policy_support$percent) - 10), yend = 100), linetype = "dashed", size = 0.1, color = 'grey') +
+      ylim(25, 100) +
+      geom_hline(data = climate_policy_support_mean,
+                 aes(yintercept = mean, color = policy)) +
+      theme(plot.title = element_text(hjust = 0.5),
+            axis.title.y=element_blank()) +
       labs(
         title= "Climate Policy Support, by State",
-        x = "State",
-        y = "Estimated Percentage of Support")
+        y = "Estimated Percentage of Support") +
+      coord_flip()
     
-    policy_support_plot <- ggplotly(psp)
-    policy_support_plot 
+    psp <- ggplotly(policy_support_plot)
+    
+    
   })
   
   

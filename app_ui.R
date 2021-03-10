@@ -86,7 +86,7 @@ page_one <- tabPanel( # >>>>>>>>>>>>>>>>>>>> Chart 1
       
       mainPanel(
         
-        plotlyOutput("policy_plot"),
+        plotlyOutput("policy_plot", height = 800),
         
         tableOutput("state"),
         
