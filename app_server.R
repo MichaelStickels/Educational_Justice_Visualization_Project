@@ -1,11 +1,158 @@
 #
-#   App server
+#   App server and Data Handling
 #
 #   Educational Justice and the Environment
 #
 
 
-source("app_data-prep.R")
+
+# *************** Data *************** #
+
+
+# Data Load Helper Function (removes line breaks from links/paths)
+read.csv3 <- function(dir,debug=TRUE) {
+  read.csv(gsub("\\n *","",dir))
+}
+
+
+# Load data
+school_finance_data <- read.csv3("https://raw.githubusercontent.com/MichaelStick
+                                 els/Educational_Justice_Visualization_Project/m
+                                 ain/Data/US%20Census%202018%20school%20finance%
+                                 20data/elsec18.csv")
+
+climate_op_data <- read.csv3("https://raw.githubusercontent.com/MichaelStickels/
+                             Educational_Justice_Visualization_Project/main/Data
+                             /Yale%20Climate%20Opintion%20Data/YCOM_2020_Data.cs
+                             v")
+
+cwift_county <- read.csv3("https://raw.githubusercontent.com/MichaelStickels/Edu
+                          cational_Justice_Visualization_Project/main/Data/NCES%
+                          20Data/Comparable%20Wage%20Index%20for%20Teachers%20(2
+                          016)/EDGE_ACS_CWIFT2016_County.csv")
+
+data_cdp03 <- read.csv3("https://raw.githubusercontent.com/MichaelStickels/Educa
+                        tional_Justice_Visualization_Project/main/Data/NCES%20Da
+                        ta/Selected%20Economic%20Characteristics%20of%20Relevant
+                        %20Children%20Enrolled%20(Public%20and%20Private)%20(201
+                        4-2018)/CDP03_104_USSchoolDistrictAll.csv")
+
+data_cdp02 <- read.csv3("https://raw.githubusercontent.com/MichaelStickels/Educa
+                        tional_Justice_Visualization_Project/main/Data/NCES%20Da
+                        ta/CDP02%20SELECTED%20SOCIAL%20CHARACTERISTICS%20OF%20CH
+                        ILDREN%20IN%20THE%20UNITED%20STATES/CDP02_105_USSchoolDi
+                        strictAll_21824157365.csv")
+
+fips_data <- read.csv3("https://raw.githubusercontent.com/MichaelStickels/Educat
+                       ional_Justice_Visualization_Project/main/Data/FIPS_State_
+                       Codes.csv")
+
+state_school_funding <- read.csv3("https://raw.githubusercontent.com/MichaelStic
+                                  kels/Educational_Justice_Visualization_Project
+                                  /main/Data/state_education_funding_aggregate.c
+                                  sv")
+
+
+
+
+# >>>>>>>>>>>>>>>>>>>> Climate Opinion & Poverty Chart Data
+
+climate_op_data_a <- climate_op_data %>%
+  filter(GeoType == "State") %>%
+  select(GeoName, fundrenewables, regulate, reducetax,
+         drilloffshore, teachGW) %>%
+  rename(state = GeoName) %>%
+  left_join(select(state_school_funding, state, total_funding), by = "state")
+
+colnames(climate_op_data_a) <- c("State",
+                                 "Funding Research for Renewable Energy",
+                                 "Regulating CO2", "Carbon Tax",
+                                 "Offshore Drilling", "Teaching Global Warming",
+                                 "total_funding_per")
+
+
+
+
+# >>>>>>>>>>>>>>>>>>>> Funding & Climate Opinion Chart Data
+
+# climate_op_state <- climate_op_data %>%
+#   select(GeoType, GEOID, happening) %>%
+#   filter(GeoType == "County") %>%
+#   group_by(GEOID) %>%
+#   summarize(happening)
+# 
+# cwift_county_select <- cwift_county %>%
+#   select(CNTY_FIPS, CNTY_CWIFTEST) %>%
+#   summarize(GEOID = CNTY_FIPS, CNTY_CWIFTEST)
+# 
+# funding_chart_data <- school_finance_data %>%
+#   select(STATE, CONUM, TCURINST  , V33) %>%
+#   group_by(CONUM) %>%
+#   summarize(exp = mean(TCURINST ), students = mean(V33)) %>%
+#   rename(GEOID = CONUM) %>%
+#   mutate(ppspend = exp / students) %>%
+#   filter(ppspend < 26) %>%
+#   left_join(climate_op_state, by = 'GEOID') %>%
+#   left_join(cwift_county_select, by = 'GEOID') %>%
+#   mutate(pp_adjusted_spend = ppspend * CNTY_CWIFTEST) %>%
+#   mutate(FIPS = case_when(nchar(GEOID) == 4 ~ paste('0', GEOID, sep = ""),
+#                           T ~ paste(GEOID)))
+# 
+# 
+# 
+# state_join <- data_cdp02 %>%
+#   select(GeoId, CDP02_93pct) %>%
+#   rename(comp_rate_pct = CDP02_93pct) %>%
+#   mutate(state_code = as.integer(substr(GeoId, 8, 9))) %>%
+#   mutate(GEOID = substr(GeoId, 8, 12)) %>%
+#   left_join(fips_data, by = 'state_code') %>%
+#   select(state, GEOID, comp_rate_pct)
+# 
+# state_join2 <- data_cdp03 %>%
+#   select(GeoId, CDP03_54pct) %>%
+#   rename(pov_rate_pct = CDP03_54pct) %>%
+#   mutate(state_code = as.integer(substr(GeoId, 8, 9))) %>%
+#   mutate(GEOID = substr(GeoId, 8, 12)) %>%
+#   left_join(fips_data, by = 'state_code') %>%
+#   select(GEOID, pov_rate_pct)
+# 
+# climate_geoid <- climate_op_data %>%
+#   filter(GeoType == "County") %>%
+#   select(GEOID, GeoName, happening) %>%
+#   mutate(GEOID = case_when(nchar(GEOID) == 4 ~ paste('0', GEOID, sep = ""),
+#                            T ~ paste(GEOID))) %>%
+#   mutate(GeoName = sub("\\,.*", "", GeoName))
+# 
+# chart_data <- climate_geoid %>%
+#   left_join(state_join, by = 'GEOID') %>%
+#   left_join(state_join2, by = 'GEOID') %>%
+#  # drop_na() %>%
+#   group_by(GEOID, GeoName, state) %>%
+#   summarize(happening = mean(happening),
+#             comp_rate_pct = mean(comp_rate_pct),
+#             pov_rate_pct = mean(pov_rate_pct))
+# 
+
+
+
+# >>>>>>>>>>>>>>>>>>>>
+
+
+
+
+# >>>>>>>>>>>>>>>>>>>> Other
+
+states = c(unique(climate_op_data %>%
+                    filter(GeoType == "State") %>%
+                    pull(GeoName)))
+
+
+
+
+
+
+# *************** Server *************** #
+
 
 
 # Server Function
@@ -97,9 +244,7 @@ server <- function(input, output) {
     psp <- ggplotly(policy_support_plot)
     
     psp
-    
-    
-    
+
     
   })
   
@@ -124,20 +269,22 @@ server <- function(input, output) {
 
 
 
- YaleData <- read.csv("https://raw.githubusercontent.com/MichaelStickels/Educational_Justice_Visualization_Project/main/Data/Yale%20Climate%20Opintion%20Data/YCOM_2020_Data.csv")
+YaleData <- read.csv("https://raw.githubusercontent.com/MichaelStickels/Educational_Justice_Visualization_Project/main/Data/Yale%20Climate%20Opintion%20Data/YCOM_2020_Data.csv")
 
 poverty_estimates <- read.csv("https://raw.githubusercontent.com/MichaelStickels/Educational_Justice_Visualization_Project/ec10209f8db8f63feff6991ed33e6a2a356a9fef/NCES%20Poverty%20Levels.csv",
                              encoding = "UTF-8")
 
- states_p1 <- read.csv("https://raw.githubusercontent.com/MichaelStickels/Educational_Justice_Visualization_Project/main/sc091aai.csv", encoding = "UTF-8")
+states_p1 <- read.csv("https://raw.githubusercontent.com/MichaelStickels/Educational_Justice_Visualization_Project/main/sc091aai.csv", encoding = "UTF-8")
 
- states_p2 <- read.csv("https://raw.githubusercontent.com/MichaelStickels/Educational_Justice_Visualization_Project/main/sc091akn.csv", encoding = "UTF-8")
+states_p2 <- read.csv("https://raw.githubusercontent.com/MichaelStickels/Educational_Justice_Visualization_Project/main/sc091akn.csv", encoding = "UTF-8")
 
- states_p3 <- read.csv("https://raw.githubusercontent.com/MichaelStickels/Educational_Justice_Visualization_Project/main/sc091aow.csv", encoding = "UTF-8")
+states_p3 <- read.csv("https://raw.githubusercontent.com/MichaelStickels/Educational_Justice_Visualization_Project/main/sc091aow.csv", encoding = "UTF-8")
+
+state_codes <- read.csv("https://raw.githubusercontent.com/MichaelStickels/Educational_Justice_Visualization_Project/main/Data/FIPS_State_Codes.csv")
 
 # Aggregate and mutate Yale data to get attitudes and combine with Economic/CWIFT data
 
- poverty_estimates_new <- as.data.frame(sapply(poverty_estimates, toupper))
+poverty_estimates_new <- as.data.frame(sapply(poverty_estimates, toupper))
 
 states_1 <- states_p1 %>%
   select(Code = ncessch, NAME = schnam09, State = mstate09)
@@ -169,7 +316,7 @@ average_ipr <- poverty_data_full %>%
   group_by(State) %>%
   mutate(IPR_AVG = mean(as.numeric(IPR_EST, na.rm = T))) %>%
   select(region = State, IPR_AVG) %>%
-  distinct(State, IPR_AVG)
+  distinct(region, IPR_AVG)
 
 code_state <- state_codes %>%
   select(region = state_abbreviation, state_code, state)
@@ -201,7 +348,7 @@ map_theme <- theme_bw() +
 # Map chart displaying average IPR in each state
 output$ipr_plot <- renderPlot({
 
-  map_chart_ipr <- ggplot(data = map_shape_ipr) +
+  ggplot(data = map_shape_ipr) +
     geom_polygon(
       mapping = aes(x = long, y = lat, group = group, fill = IPR_AVG),
       color = "yellow",
@@ -213,9 +360,10 @@ output$ipr_plot <- renderPlot({
     map_theme +
     ggtitle("Average Income-to-Poverty Ratio (IPR) by State")
 
-  return(map_chart_ipr)
 
 })
+
+
 
 # Create an interactive map chart that displays different attitudes by state
 yale_map_data <- yale_by_state %>%

@@ -6,6 +6,11 @@
 
 
 
+source("app_data-prep.R")
+source("app_server.R")
+
+
+
 # *************** Pages *************** #
 
 
@@ -88,7 +93,7 @@ page_one <- tabPanel( # >>>>>>>>>>>>>>>>>>>> Chart 1
         
         pickerInput("statepicker",
                     label = "Select States:",
-                    choices = unique(climate_policy_support$State),
+                    choices = unique(states),
                     options = list(`actions-box` = TRUE), multiple = T,
                     selected = states)
         
