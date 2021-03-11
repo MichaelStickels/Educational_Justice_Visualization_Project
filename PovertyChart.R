@@ -127,12 +127,12 @@ output$types_plot <- renderPlot({
   
   map_chart_types <- ggplot(data = map_shape_type) +
     geom_polygon(
-      mapping = aes(x = long, y = lat, group = group, fill = input$type),
+      mapping = aes(x = long, y = lat, group = group, fill = Support_Regulations),
       color = "purple",
       size = .3
     ) +
     coord_map() +
-    scale_fill_continuous(low = "cadetblue1", high = "deepskyblue4") + 
+    scale_fill_continuous(low = "lightgoldenrodyellow", high = "blue4") + 
     labs(fill = "% Support") +
     map_theme +
     ggtitle("Percentage of People Who Support ")

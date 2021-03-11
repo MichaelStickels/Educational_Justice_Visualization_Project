@@ -113,6 +113,27 @@ page_two <- tabPanel(  # >>>>>>>>>>>>>>>>>>>> Chart 2
   
   "Poverty/Attitudes",
   
+  mainPanel(plotOutput(outputId = "ipr_plot")),
+  
+  sidebarLayout(
+    sidebarPanel(
+      selectInput(
+        input = "type",
+        label = "Choose an Aspect of Environmental Education",
+        choices = c("Support_Discussions", 
+                    "Support_Tax_Reductions", "Support_CO2_Limits", 
+                    "Support_Local_Officials", "Support_Congress", 
+                    "Support_President", "Support_Corporations", 
+                    "Support_Regulations", "Support_Renewable_Standards", 
+                    "Support_Offshore_Drilling", "Support_Arctic_Drilling", 
+                    "Support_Funding_Renewables", "See_Global_Warming_as_Priority", 
+                    "Support_Teaching_Global_Warming", "Agree_Climate_Change_is_Happening", 
+                    "Worried_About_Global_Warming")
+      )
+    ),
+    mainPanel(plotOutput(outputId = "types_plot"))
+  ),
+  
   sidebarLayout(
     
     sidebarPanel(
@@ -126,7 +147,11 @@ plotlyOutput(outputId = "povertyclimateplot")
 
   ),
 
- p("")
+ p("In these charts, you can compare how a state's Income-to-Poverty Ratio (IPR) relates to certain attitudes
+   toward environmental education and/or environmental issues. We wanted to see the correlation between
+   attitudes toward environmental education and the poverty rates in each state. As you can see, depending 
+   on the topic/issue, attitudes are often reflective of the IPR in each state as they tend to stay similar
+   when plotting different issues.")
 
 )
 
