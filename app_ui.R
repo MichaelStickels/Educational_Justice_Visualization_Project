@@ -75,12 +75,22 @@ page_one <- tabPanel( # >>>>>>>>>>>>>>>>>>>> Chart 1
       
       sidebarPanel(
         
-        radioButtons("chart1_radio", label = h3("Select policies"),
+        radioButtons("chart1_radio", label = "Select Policies:",
                      choices = list("All" = 1, "Carbon Tax" = 2,
                                     "Funding Research for Renewable Energy" = 3,
                                     "Offshore Drilling" = 4,
                                     "Regulating CO2" = 5),
                      selected = 1),
+        
+        radioButtons("chart1_radio2", label = "Chart Options:",
+                     choices = list("Trend Lines" = 1, "Mean Lines" = 2),
+                     selected = 1),
+        
+        pickerInput("statepicker",
+                    label = "Select States:",
+                    choices = unique(climate_policy_support$State),
+                    options = list(`actions-box` = TRUE), multiple = T,
+                    selected = states)
         
       ),
       

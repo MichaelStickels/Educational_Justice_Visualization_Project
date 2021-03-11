@@ -20,47 +20,85 @@ server <- function(input, output) {
     # chart1_radio input
     
     if(input$chart1_radio == 1){
-      climate_op_data2 <- climate_op_data_a 
+      climate_op_data2 <- climate_op_data_a %>%
+        filter(State %in% input$statepicker)
     }
     else if (input$chart1_radio == 2){
       climate_op_data2 <- climate_op_data_a %>% 
-        select("State", "Teaching Global Warming", "Carbon Tax")
+        select("State", "Teaching Global Warming",
+               "Carbon Tax", total_funding_per) %>%
+        filter(State %in% input$statepicker)
     }
     else if (input$chart1_radio == 3){
       climate_op_data2 <- climate_op_data_a %>% 
-        select("State", "Teaching Global Warming", "Funding Research for Renewable Energy")
+        select("State", "Teaching Global Warming",
+               "Funding Research for Renewable Energy", total_funding_per) %>%
+        filter(State %in% input$statepicker)
     }
     else if (input$chart1_radio == 4){
       climate_op_data2 <- climate_op_data_a %>% 
-        select("State", "Teaching Global Warming", "Offshore Drilling")
+        select("State", "Teaching Global Warming", "Offshore Drilling",
+               total_funding_per) %>%
+        filter(State %in% input$statepicker)
     }
     else if (input$chart1_radio == 5){
       climate_op_data2 <- climate_op_data_a %>% 
-        select("State", "Teaching Global Warming", "Regulating CO2")
+        select("State", "Teaching Global Warming", "Regulating CO2",
+               total_funding_per) %>%
+        filter(State %in% input$statepicker)
     }
     
-    climate_policy_support <- gather(climate_op_data2, key = policy, value = percent,
-                                     -State)
+    climate_policy_support <- gather(climate_op_data2, key = policy,
+                                     value = percent, -State,
+                                     -total_funding_per)
     
     climate_policy_support_mean <- climate_policy_support %>%
       group_by(policy) %>%
       summarize(mean = mean(percent))
     
     #plot climate support data
-    policy_support_plot <- ggplot(data = climate_policy_support, aes(x = State, y = percent, color = policy)) +
-      geom_point(size = 2) +
-      #geom_segment(aes(x = State, xend = State, y = (min(climate_policy_support$percent) - 10), yend = 100), linetype = "dashed", size = 0.1, color = 'grey') +
-      ylim(25, 100) +
-      geom_hline(data = climate_policy_support_mean,
-                 aes(yintercept = mean, color = policy)) +
-      theme(plot.title = element_text(hjust = 0.5),
-            axis.title.y=element_blank()) +
-      labs(
-        title= "Climate Policy Support, by State",
-        y = "Estimated Percentage of Support") +
-      coord_flip()
+    if(input$chart1_radio2 == 1) {
+      
+      policy_support_plot <- ggplot(data = climate_policy_support,
+                                    aes(x = reorder(State, -total_funding_per),
+                                        y = percent, color = policy)) +
+        geom_point(size = 2) +
+        ylim(25, 100) +
+        geom_smooth(aes(group = policy, color = policy), method = "lm",
+                    formula = 'y ~ x', se = F) +
+        theme(plot.title = element_text(hjust = 0.5),
+              axis.title.y=element_blank()) +
+        labs(
+          title= "Climate Policy Support, by State",
+          y = "Estimated Percentage of Support") +
+        coord_flip()
+      
+    } else {
+      
+      policy_support_plot <- ggplot(data = climate_policy_support,
+                                    aes(x = reorder(State, -total_funding_per),
+                                        y = percent, color = policy)) +
+         geom_point(size = 2) +
+         ylim(25, 100) +
+         geom_hline(data = climate_policy_support_mean,
+                    aes(yintercept = mean, color = policy),
+                    linetype = 2) +
+         theme(plot.title = element_text(hjust = 0.5),
+               axis.title.y=element_blank()) +
+         labs(
+           title= "Climate Policy Support, by State",
+           y = "Estimated Percentage of Support") +
+         coord_flip()
+      
+    }
+
+
     
     psp <- ggplotly(policy_support_plot)
+    
+    psp
+    
+    
     
     
   })

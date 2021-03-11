@@ -14,6 +14,7 @@ library(tidyr)
 library(RColorBrewer)
 library(plotly)
 library(shiny)
+library(shinyWidgets)
 library(ggplot2)
 library(scales)
 

@@ -44,17 +44,28 @@ fips_data <- read.csv3("https://raw.githubusercontent.com/MichaelStickels/Educat
                        ional_Justice_Visualization_Project/main/Data/FIPS_State_
                        Codes.csv")
 
+state_school_funding <- read.csv3("https://raw.githubusercontent.com/MichaelStic
+                                  kels/Educational_Justice_Visualization_Project
+                                  /main/Data/state_education_funding_aggregate.c
+                                  sv")
+
 
 
 
 # >>>>>>>>>>>>>>>>>>>> Climate Opinion & Poverty Chart Data
 
-climate_op_data_a <- climate_op_data [-c(1,53:4563), ] %>%
-  select(GeoName, fundrenewables, regulate, reducetax, drilloffshore, teachGW)
+climate_op_data_a <- climate_op_data %>%
+  filter(GeoType == "State") %>%
+  select(GeoName, fundrenewables, regulate, reducetax,
+         drilloffshore, teachGW) %>%
+  rename(state = GeoName) %>%
+  left_join(select(state_school_funding, state, total_funding), by = "state")
 
-colnames(climate_op_data_a) <- c("State", "Funding Research for Renewable Energy", 
-                               "Regulating CO2", "Carbon Tax", 
-                               "Offshore Drilling", "Teaching Global Warming")
+colnames(climate_op_data_a) <- c("State",
+                                 "Funding Research for Renewable Energy",
+                                 "Regulating CO2", "Carbon Tax",
+                                 "Offshore Drilling", "Teaching Global Warming",
+                                 "total_funding_per")
 
 
 
@@ -122,4 +133,13 @@ colnames(climate_op_data_a) <- c("State", "Funding Research for Renewable Energy
 
 
 # >>>>>>>>>>>>>>>>>>>>
+
+
+
+
+# >>>>>>>>>>>>>>>>>>>> Other
+
+states = c(unique(climate_op_data %>%
+                    filter(GeoType == "State") %>%
+                    pull(GeoName)))
 
