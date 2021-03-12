@@ -26,14 +26,6 @@ main_page <- tabPanel(
     align = "center"
   ),
   
-  p(
-    "education and injustice funding poverty income inequality climate change
-     disproportionate communities attitudes public opinion and policy
-     minorities",
-    style = "font-size:30px;",
-    align = "center"
-  ),
-  
   img(
     src = 'mariamedem.jpg',
     height = 450,
@@ -66,8 +58,7 @@ main_page <- tabPanel(
     style = "font-size:25px;"),
   
   h2(
-    "How do environmental attitudes indicate the effects of environmental
-      education?",
+    "Is environmental education a popular public opinion?",
     style = "font-size:25px;"
   ),
   
@@ -107,7 +98,7 @@ main_page <- tabPanel(
 page_one <- tabPanel(
   # >>>>>>>>>>>>>>>>>>>> Chart 1
   
-  "Education/Attitudes",
+  "Policy Support",
   
   titlePanel("chart 1 page"),
   
@@ -166,21 +157,15 @@ page_one <- tabPanel(
       
       tableOutput("state"),
       
-      br(),
+      br()
       
-      p(
-        "This plot shows the estimated percent of support for different
-            environmental policies in each state. Teaching Global Warming is
-            the second highest most supported policy-- only topped by
-            Funding Research for Renewable Energy, and having more support
-            than Regulating CO2."
       ),
       
     ),
     
   ))
   
-)
+
 
 
 
@@ -335,12 +320,32 @@ page_four <- tabPanel(
     style = "font-size:25px;"),
   
   h2(
-    "How do environmental attitudes indicate the effects of environmental
-      education?",
+    "Is environmental education a popular public opinion?",
     style = "font-size:30px;"
   ),
   
-  p("We found that abc xyz",
+  p("We found that compared to other environmental policies, teaching global warming/
+    climate change in schools was the second most supported policy, showing that it 
+    is, overall, a popular public opinion. This implies that the education system 
+    is perceived to play a substantial role in American climate belief, which 
+    leads us to consider how school funding is related to support in climate 
+    education.", style = "font-size:20px;"),
+  br(),
+  p("Generally, the more school funding a state has, the more support there is for 
+    climate education and other positive climate policies (Regulating CO2, 
+    imposing carbon tax, researching renewable energy). Predictably, having more 
+    school funding also related to having less support for negative climate policy 
+    (drilling). On the other hand, having less school funding was related to 
+    having more support for negative climate policy.",
+    style = "font-size:20px;"),
+  br(),  
+  p("In conclusion, teaching global warming/climate change in schools is in fact
+    a highly supported policy across the U.S., and school funding tends to help that
+    support. However, schools with less funding tend to be the most supportive 
+    of negative climate policy and less supportive of positive climate policy, 
+    implying that school funding and climate education can have an effect on
+    climate belief. In order for the U.S. to make positive progress on climate
+    change, they must address inequality in their educational system", 
     style = "font-size:20px;"),
   
   br(),
