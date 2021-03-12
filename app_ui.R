@@ -280,7 +280,15 @@ page_three <- tabPanel(# >>>>>>>>>>>>>>>>>>>> Chart 3
   mainPanel(
     plotOutput("funding_plot", height = 800),
     
-    p("blah blah blah")
+    p("This stacked bar chart compares education funding per state based on the
+      percentage of funding that comes from federal, state, and local sources.
+      You may select the order by which you want to see each source of funding
+      for ease of viewing differences between each state. The purpose of this
+      chart was to determine how sources of funding differ by state. These
+      differences raise the question of why states differ so much in what
+      percentage of their funding comes from each source, and further analysis
+      could be done on how these differences affect education practices in each
+      state.")
     
   )))
 
@@ -291,8 +299,6 @@ page_four <- tabPanel(
   # >>>>>>>>>>>>>>>>>>>>  Conclusion page
   
   "Conclusion",
-  
-  titlePanel("conclusion page"),
   
   h1(
     strong("Findings: Inequality, Education, and the Environment"),
@@ -332,7 +338,9 @@ page_four <- tabPanel(
   p("We found that abc xyz",
     style = "font-size:20px;"),
   
-  br()
+  br(),
+  
+  h3("Data sources", style = "font-size:30px;")
   
 )
 
