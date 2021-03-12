@@ -27,5 +27,5 @@ source("app_server.R")
 
 
 
-# Run application 
+# Run application
 shinyApp(ui, server)
