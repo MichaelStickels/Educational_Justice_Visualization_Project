@@ -32,6 +32,8 @@ climate_op_data <-
                              v"
   )
 
+cwift_state <- read.csv3("https://raw.githubusercontent.com/MichaelStickels/Educational_Justice_Visualization_Project/main/Data/NCES%20Data/Comparable%20Wage%20Index%20for%20Teachers%20(2016)/EDGE_ACS_CWIFT2016_State.csv")
+
 cwift_county <-
   read.csv3(
     "https://raw.githubusercontent.com/MichaelStickels/Edu
@@ -102,75 +104,6 @@ colnames(climate_op_data_a) <- c(
 
 
 
-# >>>>>>>>>>>>>>>>>>>> Funding & Climate Opinion Chart Data
-
-# climate_op_state <- climate_op_data %>%
-#   select(GeoType, GEOID, happening) %>%
-#   filter(GeoType == "County") %>%
-#   group_by(GEOID) %>%
-#   summarize(happening)
-#
-# cwift_county_select <- cwift_county %>%
-#   select(CNTY_FIPS, CNTY_CWIFTEST) %>%
-#   summarize(GEOID = CNTY_FIPS, CNTY_CWIFTEST)
-#
-# funding_chart_data <- school_finance_data %>%
-#   select(STATE, CONUM, TCURINST  , V33) %>%
-#   group_by(CONUM) %>%
-#   summarize(exp = mean(TCURINST ), students = mean(V33)) %>%
-#   rename(GEOID = CONUM) %>%
-#   mutate(ppspend = exp / students) %>%
-#   filter(ppspend < 26) %>%
-#   left_join(climate_op_state, by = 'GEOID') %>%
-#   left_join(cwift_county_select, by = 'GEOID') %>%
-#   mutate(pp_adjusted_spend = ppspend * CNTY_CWIFTEST) %>%
-#   mutate(FIPS = case_when(nchar(GEOID) == 4 ~ paste('0', GEOID, sep = ""),
-#                           T ~ paste(GEOID)))
-#
-#
-#
-# state_join <- data_cdp02 %>%
-#   select(GeoId, CDP02_93pct) %>%
-#   rename(comp_rate_pct = CDP02_93pct) %>%
-#   mutate(state_code = as.integer(substr(GeoId, 8, 9))) %>%
-#   mutate(GEOID = substr(GeoId, 8, 12)) %>%
-#   left_join(fips_data, by = 'state_code') %>%
-#   select(state, GEOID, comp_rate_pct)
-#
-# state_join2 <- data_cdp03 %>%
-#   select(GeoId, CDP03_54pct) %>%
-#   rename(pov_rate_pct = CDP03_54pct) %>%
-#   mutate(state_code = as.integer(substr(GeoId, 8, 9))) %>%
-#   mutate(GEOID = substr(GeoId, 8, 12)) %>%
-#   left_join(fips_data, by = 'state_code') %>%
-#   select(GEOID, pov_rate_pct)
-#
-# climate_geoid <- climate_op_data %>%
-#   filter(GeoType == "County") %>%
-#   select(GEOID, GeoName, happening) %>%
-#   mutate(GEOID = case_when(nchar(GEOID) == 4 ~ paste('0', GEOID, sep = ""),
-#                            T ~ paste(GEOID))) %>%
-#   mutate(GeoName = sub("\\,.*", "", GeoName))
-#
-# chart_data <- climate_geoid %>%
-#   left_join(state_join, by = 'GEOID') %>%
-#   left_join(state_join2, by = 'GEOID') %>%
-#  # drop_na() %>%
-#   group_by(GEOID, GeoName, state) %>%
-#   summarize(happening = mean(happening),
-#             comp_rate_pct = mean(comp_rate_pct),
-#             pov_rate_pct = mean(pov_rate_pct))
-#
-
-
-
-# >>>>>>>>>>>>>>>>>>>>
-
-
-
-
-# >>>>>>>>>>>>>>>>>>>> Other
-
 states = c(unique(climate_op_data %>%
                     filter(GeoType == "State") %>%
                     pull(GeoName)))
@@ -186,7 +119,9 @@ states = c(unique(climate_op_data %>%
 
 # Server Function
 server <- function(input, output) {
-  # >>>>>>>>>>>>>>>>>>>> [_____] Plot
+  
+  
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Plot 1
   output$policy_plot <-  renderPlotly({
     # chart1_radio input
     
@@ -284,7 +219,7 @@ server <- function(input, output) {
     
     psp <- ggplotly(policy_support_plot)
     
-    psp
+    return(psp)
     
     
   })
@@ -292,159 +227,43 @@ server <- function(input, output) {
   
   
   
-  # # >>>>>>>>>>>>>>>>>>>> [_____] Plot
-  # output$....
-  
-  
-  
-  
-  
-  # >>>>>>>>>>>>>>>>>>>> Funding Sources Plot
-  
-  
-  
-  
-  output$funding_plot <-  renderPlot({
-    federal_order <- c("local", "state", "federal")
-    state_order <- c("federal", "local", "state")
-    local_order <- c("federal", "state", "local")
-    
-    bar_fund_data <- state_school_funding %>%
-      filter(state != "District of Columbia") %>%
-      rename(State = state) %>%
-      mutate(
-        federal = federal_funding / total_funding,
-        state = state_funding / total_funding,
-        local = local_funding / total_funding
-      ) %>%
-      select(State, federal, state, local) %>%
-      gather(key = "type", value = "percent", -State) %>%
-      arrange(percent)
-    
-    
-    if (input$funding_radio == 1) {
-      bar_order <- state_school_funding %>%
-        filter(state != "District of Columbia") %>%
-        mutate(perc = federal_funding / total_funding) %>%
-        arrange(perc) %>%
-        mutate(order = row_number()) %>%
-        select(state, order) %>%
-        rename(State = state)
-      
-      stacked_bart_chart_data <- bar_fund_data %>%
-        left_join(bar_order, by = "State")
-      
-      fund_plot <-
-        ggplot(stacked_bart_chart_data,
-               aes(
-                 fill = factor(type, levels = federal_order),
-                 y = percent,
-                 x = reorder(State, -order)
-               )) +
-        geom_bar(position = "fill", stat = "identity") +
-        labs(fill = "Funding Source",
-             y = "Percent of Total Funding") +
-        theme(axis.title.y = element_blank()) +
-        coord_flip()
-      
-      fund_plot
-      
-    } else if (input$funding_radio == 2) {
-      bar_order <- state_school_funding %>%
-        filter(state != "District of Columbia") %>%
-        mutate(perc = state_funding / total_funding) %>%
-        arrange(perc) %>%
-        mutate(order = row_number()) %>%
-        select(state, order) %>%
-        rename(State = state)
-      
-      stacked_bart_chart_data <- bar_fund_data %>%
-        left_join(bar_order, by = "State")
-      
-      fund_plot <-
-        ggplot(stacked_bart_chart_data,
-               aes(
-                 fill = factor(type, levels = state_order),
-                 y = percent,
-                 x = reorder(State, -order)
-               )) +
-        geom_bar(position = "fill", stat = "identity") +
-        labs(fill = "Funding Source",
-             yaxis = "Percent of Total Funding") +
-        theme(axis.title.y = element_blank()) +
-        coord_flip()
-      
-    } else {
-      bar_order <- state_school_funding %>%
-        filter(state != "District of Columbia") %>%
-        mutate(perc = local_funding / total_funding) %>%
-        arrange(perc) %>%
-        mutate(order = row_number()) %>%
-        select(state, order) %>%
-        rename(State = state)
-      
-      stacked_bart_chart_data <- bar_fund_data %>%
-        left_join(bar_order, by = "State")
-      
-      fund_plot <-
-        ggplot(stacked_bart_chart_data,
-               aes(
-                 fill = factor(type, levels = local_order),
-                 y = percent,
-                 x = reorder(State, -order)
-               )) +
-        geom_bar(position = "fill", stat = "identity") +
-        labs(fill = "Funding Source",
-             yaxis = "Percent of Total Funding") +
-        theme(axis.title.y = element_blank()) +
-        coord_flip()
-      
-    }
-    
-    print(fund_plot)
-    
-  })
-  
-  
-  
-  
-  
-  
-  
-  
-  
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Plot 2
   YaleData <-
-    read.csv(
-      "https://raw.githubusercontent.com/MichaelStickels/Educational_Justice_Visualization_Project/main/Data/Yale%20Climate%20Opintion%20Data/YCOM_2020_Data.csv"
+    read.csv3(
+      "https://raw.githubusercontent.com/MichaelStickels/Educational_Justice_Vis
+      ualization_Project/main/Data/Yale%20Climate%20Opintion%20Data/YCOM_2020_Da
+      ta.csv"
     )
   
   poverty_estimates <-
-    read.csv(
-      "https://raw.githubusercontent.com/MichaelStickels/Educational_Justice_Visualization_Project/ec10209f8db8f63feff6991ed33e6a2a356a9fef/NCES%20Poverty%20Levels.csv",
-      encoding = "UTF-8"
+    read.csv3(
+      "https://raw.githubusercontent.com/MichaelStickels/Educational_Justice_Vis
+      ualization_Project/ec10209f8db8f63feff6991ed33e6a2a356a9fef/NCES%20Poverty
+      %20Levels.csv"
     )
   
   states_p1 <-
-    read.csv(
-      "https://raw.githubusercontent.com/MichaelStickels/Educational_Justice_Visualization_Project/main/sc091aai.csv",
-      encoding = "UTF-8"
+    read.csv3(
+      "https://raw.githubusercontent.com/MichaelStickels/Educational_Justice_Vis
+      ualization_Project/main/sc091aai.csv"
     )
   
   states_p2 <-
-    read.csv(
-      "https://raw.githubusercontent.com/MichaelStickels/Educational_Justice_Visualization_Project/main/sc091akn.csv",
-      encoding = "UTF-8"
+    read.csv3(
+      "https://raw.githubusercontent.com/MichaelStickels/Educational_Justice_Vis
+      ualization_Project/main/sc091akn.csv"
     )
   
   states_p3 <-
-    read.csv(
-      "https://raw.githubusercontent.com/MichaelStickels/Educational_Justice_Visualization_Project/main/sc091aow.csv",
-      encoding = "UTF-8"
+    read.csv3(
+      "https://raw.githubusercontent.com/MichaelStickels/Educational_Justice_Vis
+      ualization_Project/main/sc091aow.csv"
     )
   
   state_codes <-
-    read.csv(
-      "https://raw.githubusercontent.com/MichaelStickels/Educational_Justice_Visualization_Project/main/Data/FIPS_State_Codes.csv"
+    read.csv3(
+      "https://raw.githubusercontent.com/MichaelStickels/Educational_Justice_Vis
+      ualization_Project/main/Data/FIPS_State_Codes.csv"
     )
   
   # Aggregate and mutate Yale data to get attitudes and combine with Economic/CWIFT data
@@ -623,134 +442,207 @@ server <- function(input, output) {
     
   })
   
+  
+  
+  
+  
+  
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Plot 3
+  
+  
+  
+  output$funding_plot <-  renderPlot({
+    
+    federal_order <- c("local", "state", "federal")
+    state_order <- c("federal", "local", "state")
+    local_order <- c("federal", "state", "local")
+    
+    bar_fund_data <- state_school_funding %>%
+      filter(state != "District of Columbia") %>%
+      rename(State = state) %>%
+      mutate(
+        federal = federal_funding / total_funding,
+        state = state_funding / total_funding,
+        local = local_funding / total_funding
+      ) %>%
+      select(State, federal, state, local) %>%
+      gather(key = "type", value = "percent", -State) %>%
+      arrange(percent)
+    
+    
+    if (input$funding_radio == 1) {
+      bar_order <- state_school_funding %>%
+        filter(state != "District of Columbia") %>%
+        mutate(perc = federal_funding / total_funding) %>%
+        arrange(perc) %>%
+        mutate(order = row_number()) %>%
+        select(state, order) %>%
+        rename(State = state)
+      
+      stacked_bart_chart_data <- bar_fund_data %>%
+        left_join(bar_order, by = "State")
+      
+      fund_plot <-
+        ggplot(stacked_bart_chart_data,
+               aes(
+                 fill = factor(type, levels = federal_order),
+                 y = percent,
+                 x = reorder(State, -order)
+               )) +
+        geom_bar(position = "fill", stat = "identity") +
+        labs(fill = "Funding Source",
+             y = "Percent of Total Funding") +
+        theme(axis.title.y = element_blank()) +
+        coord_flip()
+      
+      fund_plot
+      
+    } else if (input$funding_radio == 2) {
+      bar_order <- state_school_funding %>%
+        filter(state != "District of Columbia") %>%
+        mutate(perc = state_funding / total_funding) %>%
+        arrange(perc) %>%
+        mutate(order = row_number()) %>%
+        select(state, order) %>%
+        rename(State = state)
+      
+      stacked_bart_chart_data <- bar_fund_data %>%
+        left_join(bar_order, by = "State")
+      
+      fund_plot <-
+        ggplot(stacked_bart_chart_data,
+               aes(
+                 fill = factor(type, levels = state_order),
+                 y = percent,
+                 x = reorder(State, -order)
+               )) +
+        geom_bar(position = "fill", stat = "identity") +
+        labs(fill = "Funding Source",
+             yaxis = "Percent of Total Funding") +
+        theme(axis.title.y = element_blank()) +
+        coord_flip()
+      
+    } else {
+      bar_order <- state_school_funding %>%
+        filter(state != "District of Columbia") %>%
+        mutate(perc = local_funding / total_funding) %>%
+        arrange(perc) %>%
+        mutate(order = row_number()) %>%
+        select(state, order) %>%
+        rename(State = state)
+      
+      stacked_bart_chart_data <- bar_fund_data %>%
+        left_join(bar_order, by = "State")
+      
+      fund_plot <-
+        ggplot(stacked_bart_chart_data,
+               aes(
+                 fill = factor(type, levels = local_order),
+                 y = percent,
+                 x = reorder(State, -order)
+               )) +
+        geom_bar(position = "fill", stat = "identity") +
+        labs(fill = "Funding Source",
+             yaxis = "Percent of Total Funding") +
+        theme(axis.title.y = element_blank()) +
+        coord_flip()
+      
+    }
+    
+    print(fund_plot)
+    
+  })
+  
+  
+  output$funding_comparison_plot <-  renderPlotly({
+    
+    color_df <- data.frame("color" = head(rep(c("tomato3", "tomato1"), 26), -1))
+    
+    col <- as.character(comparison_bar_data$color)
+    names(col) <- as.character(comparison_bar_data$state)
+    
+    comparison_bar_data <- state_school_funding %>%
+      select(state, total_funding) %>%
+      arrange(-total_funding) %>%
+      mutate(order = row_number()) %>%
+      mutate(color = color_df$color)
+    
+    cwift_adjusted <- comparison_bar_data %>%
+      left_join(cwift_state, by = c("state" = "ST_NAME")) %>%
+      mutate(adjusted_total_funding = total_funding / ST_CWIFTEST) %>%
+      select(state, adjusted_total_funding, order) %>%
+      mutate(color = color_df$color)
+    
+    
+    comp_chart <- ggplot(comparison_bar_data, aes(x = reorder(state, order), y = total_funding, fill = color)) + 
+      geom_bar(stat="identity", width=.5) + 
+      scale_fill_manual(values = c("tomato3", "tomato1")) +
+      labs(title="Total Funding Per Student by State",
+           caption="source: mpg",
+           x = "State",
+           y = "Funding per Student") + 
+      theme(axis.title.y = element_blank(),
+            legend.position = "none") +
+      coord_flip()
+    
+    
+    adjust_chart <- ggplot(cwift_adjusted, aes(x = reorder(state, order), y = adjusted_total_funding, fill = color)) + 
+      geom_bar(stat="identity", width=.5) +
+      scale_fill_manual(values = c("tomato3", "tomato1")) +
+      labs(title="Total Funding Per Student by State, Adjusted by CWIFT",
+           caption="source: mpg",
+           x = "State",
+           y = "Funding per Student") + 
+      theme(axis.title.y = element_blank(),
+            legend.position = "none") +
+      coord_flip()
+
+    
+    if(input$switch == T) {
+      
+      return(ggplotly(adjust_chart, tooltip="y"))
+      
+    } else {
+      
+      return(ggplotly(comp_chart, tooltip="y"))
+      
+    }
+    
+    
+  })
+  
+  
+  #
+  # waffle <- state_school_funding %>%
+  #   filter(state == "Oregon") %>%
+  #   mutate(federal = round(federal_funding / total_funding * 100, 0), state = round(state_funding / total_funding * 100, 0)) %>%
+  #   mutate(local = 100 - federal - state) %>%
+  #   select(federal, state, local)
+  #
+  # df <- expand.grid(y = 1:10, x = 1:10)
+  #
+  # df$category <- factor(rep(names(waffle), waffle))
+  #
+  #
+  # ggplot(df, aes(x = x, y = y, fill = category)) +
+  #   geom_tile(color = "black", size = 0.5) +
+  #   scale_x_continuous(expand = c(0, 0)) +
+  #   scale_y_continuous(expand = c(0, 0), trans = 'reverse') +
+  #   scale_fill_brewer(palette = "Dark2") +
+  #   labs(title="Waffle Chart",
+  #        caption="Source: mpg") +
+  #   theme(#panel.border = element_rect(size = 2),
+  #         plot.title = element_text(size = rel(1.2)),
+  #         axis.text = element_blank(),
+  #         axis.title = element_blank(),
+  #         axis.ticks = element_blank(),
+  #         #legend.title = element_blank(),
+  #         legend.position = "right")
+  #
+  
+  
+  
 }
 
 
 
-
-
-#
-#
-#
-#
-# # >>>>>>>>>> Map Chart Testing
-#
-# url <- 'https://raw.githubusercontent.com/plotly/datasets/master/geojson-counties-fips.json'
-# counties <- rjson::fromJSON(file=url)
-# fig <- plot_ly()
-# fig <- fig %>% add_trace(
-#   type="choroplethmapbox",
-#   geojson=counties,
-#   locations=chart_data$GEOID,
-#   z=chart_data$pov_rate_pct,
-#   colorscale="Viridis",
-#   #zmin=0,
-#   #zmax=12,
-#   marker=list(line=list(
-#     width=0),
-#     opacity=0.5
-#   )
-# )
-# fig <- fig %>% layout(
-#   mapbox=list(
-#     style="carto-positron",
-#     zoom =2,
-#     center=list(lon= -95.71, lat=37.09))
-# )
-#
-# fig
-#
-#
-#
-#
-#
-# # >>>>>>>>>> Facet correlation testing
-#
-# library(plotly)
-# set.seed(123)
-#
-#
-# # Create labels
-# labs <- c("Best","Second best","Third best","Average", "Average","Third Worst","Second Worst","Worst")
-# levels(chart_data$state) <- rev(labs)
-#
-# p <- ggplot(df, aes(happening, chart_data)) +
-#   geom_point() +
-#   facet_wrap(~ state) +
-#   ggtitle("Diamonds dataset facetted by clarity")
-#
-# fig <- ggplotly(p)
-#
-# fig
-#
-#
-# # Create a scatterplot of choice states
-# chart_pov <- chart_data %>%
-#   filter(state %in% c("Washington", "Oregon", "California", "South Dakota",
-#                       "Georgia", "Missouri", "Arizona", "Illinois", "New York"))
-#
-# computer_poverty <- ggplot(data = chart_pov) +
-#   geom_point(
-#     mapping = aes(x = happening, y = comp_rate_pct),
-#     color = "dodgerblue4",
-#     alpha = .6
-#   ) +
-#
-#   # Add title and axis labels
-#   labs(
-#     title = "Percent Households with Computer versus Poverty by State", # plot title
-#     x = "Percentage of People Who Believe in Climate Change", # x-axis label
-#     y = "Percentage of households under poverty line" # y-axis label
-#
-#   ) +
-#
-#   theme(plot.title = element_text(hjust = 0.5)  # center title
-#   )+
-#
-#   facet_wrap(~state)
-#
-# ggplotly(computer_poverty)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#
-#
-# waffle <- state_school_funding %>%
-#   filter(state == "Oregon") %>%
-#   mutate(federal = round(federal_funding / total_funding * 100, 0), state = round(state_funding / total_funding * 100, 0)) %>%
-#   mutate(local = 100 - federal - state) %>%
-#   select(federal, state, local)
-#
-# df <- expand.grid(y = 1:10, x = 1:10)
-#
-# df$category <- factor(rep(names(waffle), waffle))
-#
-#
-# ggplot(df, aes(x = x, y = y, fill = category)) +
-#   geom_tile(color = "black", size = 0.5) +
-#   scale_x_continuous(expand = c(0, 0)) +
-#   scale_y_continuous(expand = c(0, 0), trans = 'reverse') +
-#   scale_fill_brewer(palette = "Dark2") +
-#   labs(title="Waffle Chart",
-#        caption="Source: mpg") +
-#   theme(#panel.border = element_rect(size = 2),
-#         plot.title = element_text(size = rel(1.2)),
-#         axis.text = element_blank(),
-#         axis.title = element_blank(),
-#         axis.ticks = element_blank(),
-#         #legend.title = element_blank(),
-#         legend.position = "right")
-#

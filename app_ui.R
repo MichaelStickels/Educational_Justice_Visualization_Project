@@ -290,7 +290,30 @@ page_three <- tabPanel(# >>>>>>>>>>>>>>>>>>>> Chart 3
       could be done on how these differences affect education practices in each
       state.")
     
-  )))
+      )
+    ),
+  
+  
+  
+  br(),
+  br(),
+  
+  sidebarLayout(sidebarPanel(
+    
+    switchInput(inputId = "switch", label = "Adjusted", value = F)
+    
+  ),
+  
+  mainPanel(
+    plotlyOutput("funding_comparison_plot", height = 800),
+    
+    p("blah blah blah")
+    
+  )
+  )
+  
+  
+  )
 
 
 
