@@ -50,8 +50,7 @@ main_page <- tabPanel(
     analyze what is affecting public opinion on the problem, which is why we
     chose to investigate education data. Through our analysis we hope to further
     our understanding of the complexities behind climate opinions and prompt
-    further discussion on changing environmental education.",
-    style = "font-size:25px;"
+    further discussion on changing environmental education."
   ),
   
   br(),
@@ -73,22 +72,23 @@ main_page <- tabPanel(
   
   p(
     "Comparing data from National Center for Education Statistics (NCES) and
-     Yale Climate Opinion Maps",
-    style = "font-size:20px;"
+     Yale Climate Opinion Maps"
   ),
   
   br(),
   
-  h4("How does school funding impact environmental education?",
-     style = "font-size:25px;"),
+  h4("How does school funding impact environmental education?"),
   
   p(
     "Comparing data from Comparable Wage Index for Teachers (CWIFT) and Yale
-     Climate Opinion Maps",
-    style = "font-size:20px;"
+     Climate Opinion Maps"
   ),
   
-  br()
+  br(),
+  
+  tags$head(
+    tags$link(rel = "stylesheet", type = "text/css", href = "styles.css")
+  ),
   
 )
 
@@ -113,8 +113,7 @@ page_one <- tabPanel(
     teaching about global warming (climate change) in schools. You may also
     choose between viewing the trend lines and the mean lines for each policy
     based on the collective states. Finally, you may select specific states to
-    get a more focused view on select state opinions on these policies.",
-    style = "font-size:20px;"
+    get a more focused view on select state opinions on these policies."
   ),
   
   fluidPage(sidebarLayout(
@@ -194,10 +193,10 @@ page_two <- tabPanel(# >>>>>>>>>>>>>>>>>>>> Chart 2
           "Support Expanding Offshore Drilling for Oil & Natural Gas" = "Support_Offshore_Drilling",
           "Support Drilling for Oil in the Arctic National Wildlife Refuge" = "Support_Arctic_Drilling",
           "Support Increasing Funding for Renewable Energy Sources" = "Support_Funding_Renewables",
-          "Support Believing Global Warming is a High Priority for the President & Congress" = "See_Global_Warming_as_Priority",
+          "Support Global Warming as a High Priority for the President & Congress" = "See_Global_Warming_as_Priority",
           "Support Teaching About the Causes and Potential Solutions for Global Warming in Schools" = "Support_Teaching_Global_Warming",
           "Think that Global Warming is Happening" = "Agree_Climate_Change_is_Happening",
-          "Are Somewhat/Very Worrid about Global Warming" = "Worried_About_Global_Warming"
+          "Are Somewhat/Very Worried about Global Warming" = "Worried_About_Global_Warming"
         )
       )
     )
@@ -232,9 +231,9 @@ page_two <- tabPanel(# >>>>>>>>>>>>>>>>>>>> Chart 2
       support for that policy. The purpose of placing these two maps next to
       each other is so the viewer can observe if there is a correlation between
       the IPR of the state and public opinion on environmental education in that
-      state."
+      state.")
     )
-  )))
+  ))
 
 
 
@@ -337,8 +336,7 @@ page_four <- tabPanel(
     is, overall, a popular public opinion. This implies that the education system
     is perceived to play a substantial role in American climate belief, which
     leads us to consider how school funding is related to support in climate
-    education.",
-    style = "font-size:20px;"
+    education."
   ),
   
   br(),
@@ -349,8 +347,7 @@ page_four <- tabPanel(
     imposing carbon tax, researching renewable energy). Predictably, having more
     school funding also related to having less support for negative climate policy
     (drilling). On the other hand, having less school funding was related to
-    having more support for negative climate policy.",
-    style = "font-size:20px;"
+    having more support for negative climate policy."
   ),
   
   br(),
@@ -362,15 +359,13 @@ page_four <- tabPanel(
     of negative climate policy and less supportive of positive climate policy,
     implying that school funding and climate education can have an effect on
     climate belief. In order for the U.S. to make positive progress on climate
-    change, they must address inequality in their educational system",
-    style = "font-size:20px;"
+    change, they must address inequality in their educational system"
   ),
   
   br(),
   
   h3(
-    "How does poverty levels impact environmental education attitudes?",
-    style = "font-size:30px;"
+    "How does poverty levels impact environmental education attitudes?"
   ),
   
   p("We found that based on the average IPR in each state, opinions tended to 
@@ -380,8 +375,7 @@ page_four <- tabPanel(
     had support from states with relatively higher IPR averages. These differences in support 
     indicate that the level of income/poverty in a state has the ability to contribute to a 
     person's political opinions as seen through the differences in opinions by state in the 
-    two charts.",
-    style = "font-size:20px;"),
+    two charts."),
   
   br(),
   
@@ -396,8 +390,7 @@ page_four <- tabPanel(
     per student than another state even when you adjust for differences in cost
     by state. These differences in funding indicate that even within the same
     country, students are likely receiving a very different education because of
-    gaps in funding.",
-    style = "font-size:20px;"),
+    gaps in funding."),
   
   br(),
   
