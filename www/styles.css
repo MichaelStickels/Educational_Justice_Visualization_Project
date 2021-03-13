@@ -19,7 +19,7 @@ p {
 }
 
 .navbar {
-  background-color: #4b2e83 !important;
+  background-color: #9fca87d1 !important;
 }
 
 .navbar-brand {
@@ -33,9 +33,9 @@ p {
 }
 
 .navbar li a:hover {
-  background-color: #70c4ff !important;
+  background-color: #d6efc6bd !important;
 }
 
 .navbar li.active a {
-  background-color: #60beff !important;
+  background-color: #d6efc6bd !important;
 }
