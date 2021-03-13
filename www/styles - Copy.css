@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Oswald:300,400');
+
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+h1 {
+  font-weight: 400 !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-style: normal;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 300;
+}
+
+p {
+  font-size: 16px;
+}
+
+.navbar {
+  background-color: #97d3fc !important;
+}
+
+.navbar-brand {
+  margin-right: 15px;
+  color: #333 !important;
+}
+
+.navbar li a {
+  color: #333 !important;
+  transition: 250ms all;
+}
+
+.navbar li a:hover {
+  background-color: #70c4ff !important;
+}
+
+.navbar li.active a {
+  background-color: #60beff !important;
+}
+
+.hydro-chart.half-width {
+  width: 75%;
+  margin: 0 auto;
+}
+
+.home-intro .content-container {
+  width: 800px;
+  max-width: 100%;
+  margin: 1em auto;
+  background-color: #eee;
+  padding: 1px 16px;
+  box-shadow: 0 0px 20px rgba(0,0,0,0.19), 0 0px 10px rgba(0,0,0,0.23);
+}
+
+.hydrology-narrow p,
+.hydrology-narrow h1,
+.hydrology-narrow h2,
+.hydrology-narrow ul {
+    width: 100%;
+    margin: 0 auto;
+    margin-bottom: 0.5em;
+    max-width: 800px;
+}
+
+.hydro-explorations {
+    background-color: #3498db;
+    color: white;
+    padding: 32px 0;
+}
+
+.hydrology-container .nav.nav-pills {
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+.hydrology-container .nav.nav-pills li {
+  float: none !important;
+  display: inline-block !important;
+}
+
+.hydrology-container .shiny-plot-output,
+.salmon-container .shiny-plot-output {
+  margin: 2em 0;
+}
+
+.image-center {
+  margin: 0 auto;
+  display: block;
+  margin-bottom: 1em;
+}
+
+.leaf-image {
+  height: 400px;
+}
+
+.economy-reflection {
+  margin-top: 450px;
+}
+
+.bio-container {
+  width: 100%;
+  margin: 0 auto;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.bio-node {
+  flex: 0 0 calc(33% - 16px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px;
+  box-shadow: 3px 3px 6px rgba(0,0,0,0.16), 3px 3px 6px rgba(0,0,0,0.23);
+  margin-bottom: 16px;
+  margin-right: 16px;
+}
+
+.bio-node img {
+  width: 350px;
+  height: 350px;
+  border-radius: 200px;
+}
+
+.bio-node h2 {
+  text-align: center;
+}
+
+.bio-node p {
+  font-size: 16px;
+}
+
+#andrey {
+  background-color: #8e44ad;
+  color: white;
+}
+
+#jaren {
+  background-color: #3498db;
+  color: white;
+}
+
+#alexis {
+  background-color: #e67e22;
+  color: white;
+}
+
+#caleb {
+  background-color: #f7ca18;
+}
+
+#sabrina {
+  background-color: #27ae60;
+  color: white;
+}

@@ -558,9 +558,6 @@ server <- function(input, output) {
     
     color_df <- data.frame("color" = head(rep(c("tomato3", "tomato1"), 26), -1))
     
-    col <- as.character(comparison_bar_data$color)
-    names(col) <- as.character(comparison_bar_data$state)
-    
     comparison_bar_data <- state_school_funding %>%
       select(state, total_funding) %>%
       arrange(-total_funding) %>%
@@ -581,6 +578,7 @@ server <- function(input, output) {
            caption="source: mpg",
            x = "State",
            y = "Funding per Student") + 
+      ylim(0,32000) +
       theme(axis.title.y = element_blank(),
             legend.position = "none") +
       coord_flip()
@@ -593,6 +591,7 @@ server <- function(input, output) {
            caption="source: mpg",
            x = "State",
            y = "Funding per Student") + 
+      ylim(0,32000) +
       theme(axis.title.y = element_blank(),
             legend.position = "none") +
       coord_flip()

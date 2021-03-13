@@ -38,7 +38,8 @@ main_page <- tabPanel(
   
   h1("Introduction to Educational Justice"),
   
-  p("This project studies how inequality affects primary and secondary education
+  p(
+    "This project studies how inequality affects primary and secondary education
     and people's environmental beliefs. We primarily used data from the National
     Center for Education Statistics (NCES) and Yale Climate Opinion. We wanted
     to investigate these data types together to understand how the United
@@ -49,18 +50,17 @@ main_page <- tabPanel(
     analyze what is affecting public opinion on the problem, which is why we
     chose to investigate education data. Through our analysis we hope to further
     our understanding of the complexities behind climate opinions and prompt
-    further discussion on changing environmental education.", 
-    style = "font-size:25px;"),
+    further discussion on changing environmental education.",
+    style = "font-size:25px;"
+  ),
   
   br(),
   
-  p("In this report, we want to answer the following questions:", 
+  p("In this report, we want to answer the following questions:",
     style = "font-size:25px;"),
   
-  h2(
-    "Is environmental education a popular public opinion?",
-    style = "font-size:25px;"
-  ),
+  h2("Is environmental education a popular public opinion?",
+     style = "font-size:25px;"),
   
   p("Comparing data from Yale Climate Opinion Maps", style = "font-size:20px;"),
   
@@ -159,68 +159,64 @@ page_one <- tabPanel(
       
       br()
       
-      ),
-      
     ),
     
-  ))
-  
+  ),)
+)
 
 
 
 
 
-page_two <- tabPanel(
-  # >>>>>>>>>>>>>>>>>>>> Chart 2
+
+page_two <- tabPanel(# >>>>>>>>>>>>>>>>>>>> Chart 2
   
   "Poverty/Attitudes",
   
-  mainPanel(plotOutput(outputId = "ipr_plot")),
-  
-  sidebarLayout(sidebarPanel(
-    selectInput(
-      input = "type",
-      label = "Choose an Aspect of Environmental Education",
-      choices = c(
-        "Support_Discussions",
-        "Support_Tax_Reductions",
-        "Support_CO2_Limits",
-        "Support_Local_Officials",
-        "Support_Congress",
-        "Support_President",
-        "Support_Corporations",
-        "Support_Regulations",
-        "Support_Renewable_Standards",
-        "Support_Offshore_Drilling",
-        "Support_Arctic_Drilling",
-        "Support_Funding_Renewables",
-        "See_Global_Warming_as_Priority",
-        "Support_Teaching_Global_Warming",
-        "Agree_Climate_Change_is_Happening",
-        "Worried_About_Global_Warming"
+  mainPanel(fluidRow(
+    column(6, plotOutput(outputId = "ipr_plot")),
+    column(
+      6,
+      plotOutput(outputId = "types_plot"),
+      selectInput(
+        input = "type",
+        label = "Choose an Aspect of Environmental Education",
+        choices = c(
+          "Support_Discussions",
+          "Support_Tax_Reductions",
+          "Support_CO2_Limits",
+          "Support_Local_Officials",
+          "Support_Congress",
+          "Support_President",
+          "Support_Corporations",
+          "Support_Regulations",
+          "Support_Renewable_Standards",
+          "Support_Offshore_Drilling",
+          "Support_Arctic_Drilling",
+          "Support_Funding_Renewables",
+          "See_Global_Warming_as_Priority",
+          "Support_Teaching_Global_Warming",
+          "Agree_Climate_Change_is_Happening",
+          "Worried_About_Global_Warming"
+        )
       )
     )
+    
   ),
-  mainPanel(plotOutput(outputId = "types_plot"))),
   
-  sidebarLayout(sidebarPanel(),
-                
-                mainPanel(
-                  plotlyOutput(outputId = "povertyclimateplot")
-                  
-                )),
-  
-  p(
-    "In these charts, you can compare how a state's Income-to-Poverty Ratio
+  fluidRow(
+    p(
+      "In these charts, you can compare how a state's Income-to-Poverty Ratio
     (IPR) relates to certain attitudes toward environmental education and/or
     environmental issues. We wanted to see the correlation between attitudes
     toward environmental education and the poverty rates in each state. As you
     can see, depending on the topic/issue, attitudes are often reflective of the
     IPR in each state as they tend to stay similar when plotting different
     issues."
-  ),
-  
-  p("These two maps allow for a comparison between poverty data and public
+    ),
+    
+    p(
+      "These two maps allow for a comparison between poverty data and public
    support for various aspects of environmental education. The top chart,
    displays the average income-to-poverty ratio by state. The income-to-poverty
    ratio is defined as the percentage of family income that is above or below
@@ -228,22 +224,24 @@ page_two <- tabPanel(
    indicate a higher level of poverty. This chart averages the IPR of each state
    in general, and an IPR value of 100 would represent a family with an income
    at the poverty threshold. Lighter shades on this chart would therefore
-   indicate that state to be closer to poverty level."),
-  
-  p("The map below the first, will change based on the aspect of environmental
+   indicate that state to be closer to poverty level."
+    ),
+    
+    p(
+      "The map below the first, will change based on the aspect of environmental
   education you select to view. The dark shades indicate a lighter the shade,
   the lower the percentage of support for that policy will be. The purpose of
   placing these two maps next to each is so the viewer can observe if there is a
   correlation between the IPR of the state and public opinion on environmental
-  education in that state."),
-  
-  
-)
+  education in that state."
+    )
+  )))
 
 
 
 
-page_three <- tabPanel(# >>>>>>>>>>>>>>>>>>>> Chart 3
+page_three <- tabPanel(
+  # >>>>>>>>>>>>>>>>>>>> Chart 3
   
   "Education Funding Sources by State",
   
@@ -265,7 +263,8 @@ page_three <- tabPanel(# >>>>>>>>>>>>>>>>>>>> Chart 3
   mainPanel(
     plotOutput("funding_plot", height = 800),
     
-    p("This stacked bar chart compares education funding per state based on the
+    p(
+      "This stacked bar chart compares education funding per state based on the
       percentage of funding that comes from federal, state, and local sources.
       You may select the order by which you want to see each source of funding
       for ease of viewing differences between each state. The purpose of this
@@ -273,10 +272,10 @@ page_three <- tabPanel(# >>>>>>>>>>>>>>>>>>>> Chart 3
       differences raise the question of why states differ so much in what
       percentage of their funding comes from each source, and further analysis
       could be done on how these differences affect education practices in each
-      state.")
+      state."
+    )
     
-      )
-    ),
+  )),
   
   
   
@@ -284,8 +283,11 @@ page_three <- tabPanel(# >>>>>>>>>>>>>>>>>>>> Chart 3
   br(),
   
   sidebarLayout(sidebarPanel(
-    
-    switchInput(inputId = "switch", label = "Adjusted", value = F)
+    switchInput(
+      inputId = "switch",
+      label = "Adjusted",
+      value = F
+    )
     
   ),
   
@@ -294,11 +296,10 @@ page_three <- tabPanel(# >>>>>>>>>>>>>>>>>>>> Chart 3
     
     p("blah blah blah")
     
-  )
-  )
+  ))
   
   
-  )
+)
 
 
 
@@ -319,34 +320,39 @@ page_four <- tabPanel(
   p("In this report, we wanted to answer:",
     style = "font-size:25px;"),
   
-  h2(
-    "Is environmental education a popular public opinion?",
-    style = "font-size:30px;"
-  ),
+  h2("Is environmental education a popular public opinion?",
+     style = "font-size:30px;"),
   
-  p("We found that compared to other environmental policies, teaching global warming/
-    climate change in schools was the second most supported policy, showing that it 
-    is, overall, a popular public opinion. This implies that the education system 
-    is perceived to play a substantial role in American climate belief, which 
-    leads us to consider how school funding is related to support in climate 
-    education.", style = "font-size:20px;"),
+  p(
+    "We found that compared to other environmental policies, teaching global warming/
+    climate change in schools was the second most supported policy, showing that it
+    is, overall, a popular public opinion. This implies that the education system
+    is perceived to play a substantial role in American climate belief, which
+    leads us to consider how school funding is related to support in climate
+    education.",
+    style = "font-size:20px;"
+  ),
   br(),
-  p("Generally, the more school funding a state has, the more support there is for 
-    climate education and other positive climate policies (Regulating CO2, 
-    imposing carbon tax, researching renewable energy). Predictably, having more 
-    school funding also related to having less support for negative climate policy 
-    (drilling). On the other hand, having less school funding was related to 
+  p(
+    "Generally, the more school funding a state has, the more support there is for
+    climate education and other positive climate policies (Regulating CO2,
+    imposing carbon tax, researching renewable energy). Predictably, having more
+    school funding also related to having less support for negative climate policy
+    (drilling). On the other hand, having less school funding was related to
     having more support for negative climate policy.",
-    style = "font-size:20px;"),
-  br(),  
-  p("In conclusion, teaching global warming/climate change in schools is in fact
+    style = "font-size:20px;"
+  ),
+  br(),
+  p(
+    "In conclusion, teaching global warming/climate change in schools is in fact
     a highly supported policy across the U.S., and school funding tends to help that
-    support. However, schools with less funding tend to be the most supportive 
-    of negative climate policy and less supportive of positive climate policy, 
+    support. However, schools with less funding tend to be the most supportive
+    of negative climate policy and less supportive of positive climate policy,
     implying that school funding and climate education can have an effect on
     climate belief. In order for the U.S. to make positive progress on climate
-    change, they must address inequality in their educational system", 
-    style = "font-size:20px;"),
+    change, they must address inequality in their educational system",
+    style = "font-size:20px;"
+  ),
   
   br(),
   
@@ -380,6 +386,13 @@ page_four <- tabPanel(
 
 
 ui <- navbarPage(
+
+  # includeCSS("www/styles.css"),
+    
+  # tags$head(
+  #   tags$link(rel = "stylesheet", type = "text/css", href = "styles.css")
+  # ),
+  
   "Educational Justice and the Environment",
   
   main_page,
