@@ -55,19 +55,16 @@ main_page <- tabPanel(
   
   br(),
   
-  p("In this report, we want to answer the following questions:",
-    style = "font-size:25px;"),
+  p("In this report, we want to answer the following questions:"),
   
-  h2("Is environmental education a popular public opinion?",
-     style = "font-size:25px;"),
+  h2("Is environmental education a popular public opinion?"),
   
-  p("Comparing data from Yale Climate Opinion Maps", style = "font-size:20px;"),
+  p("Comparing data from Yale Climate Opinion Maps"),
   
   br(),
   
   h3(
-    "How do poverty levels impact attitudes toward environmental education and regulations?",
-    style = "font-size:25px;"
+    "How do state poverty levels impact environmental education attitudes?"
   ),
   
   p(
@@ -77,7 +74,7 @@ main_page <- tabPanel(
   
   br(),
   
-  h4("How does school funding impact environmental education?"),
+  h4("How does public education differ between states?"),
   
   p(
     "Comparing data from Comparable Wage Index for Teachers (CWIFT) and Yale
@@ -306,7 +303,7 @@ page_three <- tabPanel(
   ))
   
   
-),
+))
 
 
 
@@ -318,69 +315,72 @@ page_four <- tabPanel(
   
   h1(
     strong("Findings: Inequality, Education, and the Environment"),
-    style = "font-size:50px;",
     align = "center"
   ),
   
   br(),
   
-  p("In this report, we wanted to answer:",
-    style = "font-size:25px;"),
+  p("In this report, we wanted to answer:"),
   
-  h2("Is environmental education a popular public opinion?",
-     style = "font-size:30px;"),
+  h2("Is environmental education a popular public opinion?"),
   
   p(
-    "We found that compared to other environmental policies, teaching global warming/
-    climate change in schools was the second most supported policy, showing that it
-    is, overall, a popular public opinion. This implies that the education system
-    is perceived to play a substantial role in American climate belief, which
-    leads us to consider how school funding is related to support in climate
-    education."
+    "We found that compared to other environmental policies, teaching global
+    warming/climate change in schools was the second most supported policy, 
+    which shows that it is overall a popular public opinion. This implies that
+    the education system may play a substantial role in American climate belief,
+    which leads us to consider how school funding is related to public support
+    of climate education."
   ),
   
   br(),
   
   p(
-    "Generally, the more school funding a state has, the more support there is for
-    climate education and other positive climate policies (Regulating CO2,
+    "Generally, the more school funding a state has, the more support there is
+    for climate education and other positive climate policies (Regulating CO2,
     imposing carbon tax, researching renewable energy). Predictably, having more
-    school funding also related to having less support for negative climate policy
-    (drilling). On the other hand, having less school funding was related to
-    having more support for negative climate policy."
+    school funding correlated with reduced support for policies that negatively
+    impact the climate (drilling). On the other hand, having less school funding
+    correlated with states showing more support for policies that negatively
+    impact the climate."
   ),
   
   br(),
   
   p(
     "In conclusion, teaching global warming/climate change in schools is in fact
-    a highly supported policy across the U.S., and school funding tends to help that
-    support. However, schools with less funding tend to be the most supportive
-    of negative climate policy and less supportive of positive climate policy,
-    implying that school funding and climate education can have an effect on
-    climate belief. In order for the U.S. to make positive progress on climate
-    change, they must address inequality in their educational system"
+    a highly supported policy across the U.S., with the average percentage of
+    support being (variable avg_pct_teaching_support), and school funding tends
+    to help that support. However, schools with less funding tend to be the most
+    supportive of negative climate policy and less supportive of positive
+    climate policy, implying that school funding and climate education can have
+    an effect on climate belief. In order for the U.S. to make positive progress
+    on climate change, they must address inequality in their educational system.
+    (Include table with avg US percentage of support for each of 6 policies)."
   ),
   
   br(),
   
   h3(
-    "How does poverty levels impact environmental education attitudes?"
+    "How do state poverty levels impact environmental education attitudes?"
   ),
   
-  p("We found that based on the average IPR in each state, opinions tended to 
-    somewhat correlate to attitudes toward different issues. For example, attitudes
-    toward offshore drilling strongly reflected support from states that tended to have 
-    a lower IPR average while support for teaching more about global warming in schools 
-    had support from states with relatively higher IPR averages. These differences in support 
-    indicate that the level of income/poverty in a state has the ability to contribute to a 
-    person's political opinions as seen through the differences in opinions by state in the 
-    two charts."),
+  p("We found that the average IPR in each state tended to correlate with public
+  opinion on environmental issues. The state with the lowest IPR was (variable
+  state_lowest_ipr) with an IPR of (lowest_ipr), and the state with the highest
+  IPR was (variable state_highest IPR) with an IPR of (highest_ipr). An example
+  of this correlation between IPR and climate policy support is that states with
+  lower IPR averages tended to demonstrate stronger support for offshore
+  drilling (a negative climate policy), while states with a relatively high IPR
+  average tended to show stronger support for teaching more about global warming
+  in schools (a positive climate policy). These differences in support indicate
+  that the level of income/poverty in a state has the ability to contribute to a
+  person's political opinions as seen through the differences in opinions by
+  state in the two charts."),
   
   br(),
   
-  h4("How does public education differ between states?",
-     style = "font-size:30px;"),
+  h4("How does public education differ between states?"),
   
   p("We found that based on which state you are in, you may be receiving a
     vastly different education than you would in another state. Each state had
@@ -388,15 +388,19 @@ page_four <- tabPanel(
     from federal, state, and local sources. There was also a large difference in
     funding per student by state where some states were paying more than double
     per student than another state even when you adjust for differences in cost
-    by state. These differences in funding indicate that even within the same
-    country, students are likely receiving a very different education because of
-    gaps in funding."),
-  
+    by state. We found that the state with the lowest funding per student was
+    (variable lowest_student_funding) and the state with the highest funding per
+    student was (variable highest_student_funding). These differences in funding
+    indicate that even within the same country, students are likely receiving a
+    very different education because of gaps in funding."),
+
   br(),
+
+  h3("Data sources"),
   
-  h3("Data sources", style = "font-size:30px;")
+  p("insert data sources: NCES and Yale Climate Opinion")
   
-))
+)
 
 
 
