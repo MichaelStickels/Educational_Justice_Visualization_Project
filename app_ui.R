@@ -100,8 +100,6 @@ page_one <- tabPanel(
   
   "Policy Support",
   
-  titlePanel("chart 1 page"),
-  
   h1("Is environmental education a popular public opinion?"),
   
   p(
@@ -115,7 +113,7 @@ page_one <- tabPanel(
     teaching about global warming (climate change) in schools. You may also
     choose between viewing the trend lines and the mean lines for each policy
     based on the collective states. Finally, you may select specific states to
-    get a more focused view of select state opinions on these policies.",
+    get a more focused view on select state opinions on these policies.",
     style = "font-size:20px;"
   ),
   
@@ -182,22 +180,22 @@ page_two <- tabPanel(# >>>>>>>>>>>>>>>>>>>> Chart 2
         input = "type",
         label = "Choose an Aspect of Environmental Education",
         choices = c(
-          "Support_Discussions",
-          "Support_Tax_Reductions",
-          "Support_CO2_Limits",
-          "Support_Local_Officials",
-          "Support_Congress",
-          "Support_President",
-          "Support_Corporations",
-          "Support_Regulations",
-          "Support_Renewable_Standards",
-          "Support_Offshore_Drilling",
-          "Support_Arctic_Drilling",
-          "Support_Funding_Renewables",
-          "See_Global_Warming_as_Priority",
-          "Support_Teaching_Global_Warming",
-          "Agree_Climate_Change_is_Happening",
-          "Worried_About_Global_Warming"
+          "Descriptive Name" = "Support_Discussions",
+          "Descriptive Name" = "Support_Tax_Reductions",
+          "Descriptive Name" = "Support_CO2_Limits",
+          "Descriptive Name" = "Support_Local_Officials",
+          "Descriptive Name" = "Support_Congress",
+          "Descriptive Name" = "Support_President",
+          "Descriptive Name" = "Support_Corporations",
+          "Descriptive Name" = "Support_Regulations",
+          "Descriptive Name" = "Support_Renewable_Standards",
+          "Descriptive Name" = "Support_Offshore_Drilling",
+          "Descriptive Name" = "Support_Arctic_Drilling",
+          "Descriptive Name" = "Support_Funding_Renewables",
+          "Descriptive Name" = "See_Global_Warming_as_Priority",
+          "Descriptive Name" = "Support_Teaching_Global_Warming",
+          "Descriptive Name" = "Agree_Climate_Change_is_Happening",
+          "Descriptive Name" = "Worried_About_Global_Warming"
         )
       )
     )
@@ -216,24 +214,23 @@ page_two <- tabPanel(# >>>>>>>>>>>>>>>>>>>> Chart 2
     ),
     
     p(
-      "These two maps allow for a comparison between poverty data and public
-   support for various aspects of environmental education. The top chart,
-   displays the average income-to-poverty ratio by state. The income-to-poverty
-   ratio is defined as the percentage of family income that is above or below
-   the federal poverty level. It ranges from 0 to 999 where lower IPR values
-   indicate a higher level of poverty. This chart averages the IPR of each state
-   in general, and an IPR value of 100 would represent a family with an income
-   at the poverty threshold. Lighter shades on this chart would therefore
-   indicate that state to be closer to poverty level."
+      "The chart on the left, displays the average IPR by state. The IPR is
+      defined as the percentage of family income that is above or below the
+      federal poverty level. It ranges from 0 to 999 where lower IPR values
+      indicate a higher level of poverty. This chart averages the IPR of each
+      state in general, and an IPR value of 100 would represent a family with an
+      income at the poverty threshold. Lighter shades on this chart would
+      therefore indicate the state to be closer to the poverty level."
     ),
     
     p(
-      "The map below the first, will change based on the aspect of environmental
-  education you select to view. The dark shades indicate a lighter the shade,
-  the lower the percentage of support for that policy will be. The purpose of
-  placing these two maps next to each is so the viewer can observe if there is a
-  correlation between the IPR of the state and public opinion on environmental
-  education in that state."
+      "The map to the right of the first, will change based on the aspect of
+      environmental education you select to view. Darker shades indicate
+      higher support and a lighter the shade indicates a lower percentage of
+      support for that policy. The purpose of placing these two maps next to
+      each other is so the viewer can observe if there is a correlation between
+      the IPR of the state and public opinion on environmental education in that
+      state."
     )
   )))
 
@@ -294,12 +291,21 @@ page_three <- tabPanel(
   mainPanel(
     plotlyOutput("funding_comparison_plot", height = 800),
     
-    p("blah blah blah")
+    p("This chart displays the total funding per student by state. They are
+      displayed in two colors for ease of viewing so one can distinguish between
+      various states more easily. The chart is ordered by funding per student,
+      so the state with the lowest funding per student is at the top, and the
+      state with the highest funding per student is at the bottom (it maintains
+      the same order when switched to adjusted for ease of viewing). You can
+      choose to adjust the chart by the Comparable Wage Index for Teachers, a
+      cost index which adjusts the values based the average cost of living for
+      that state, which may give a more accurate picture of public school
+      spending."
     
   ))
   
   
-)
+),
 
 
 
@@ -332,7 +338,9 @@ page_four <- tabPanel(
     education.",
     style = "font-size:20px;"
   ),
+  
   br(),
+  
   p(
     "Generally, the more school funding a state has, the more support there is for
     climate education and other positive climate policies (Regulating CO2,
@@ -342,7 +350,9 @@ page_four <- tabPanel(
     having more support for negative climate policy.",
     style = "font-size:20px;"
   ),
+  
   br(),
+  
   p(
     "In conclusion, teaching global warming/climate change in schools is in fact
     a highly supported policy across the U.S., and school funding tends to help that
@@ -366,17 +376,25 @@ page_four <- tabPanel(
   
   br(),
   
-  h4("How does school funding impact environmental education?",
+  h4("How does public education differ between states?",
      style = "font-size:30px;"),
   
-  p("We found that abc xyz",
+  p("We found that based on which state you are in, you may be receiving a
+    vastly different education than you would in another state. Each state had
+    very different sources of funding, based on percentage of funding coming
+    from federal, state, and local sources. There was also a large difference in
+    funding per student by state where some states were paying more than double
+    per student than another state even when you adjust for differences in cost
+    by state. These differences in funding indicate that even within the same
+    country, students are likely receiving a very different education because of
+    gaps in funding.",
     style = "font-size:20px;"),
   
   br(),
   
   h3("Data sources", style = "font-size:30px;")
   
-)
+))
 
 
 
