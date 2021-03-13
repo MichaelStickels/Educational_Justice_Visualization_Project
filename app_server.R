@@ -436,7 +436,7 @@ server <- function(input, output) {
       scale_fill_continuous(low = "grey95", high = "midnightblue") +
       labs(fill = "% Support") +
       map_theme +
-      ggtitle("Percentage of People Who Support ")
+      ggtitle("Percentage of People Who... ")
     
     return(map_chart_types)
     

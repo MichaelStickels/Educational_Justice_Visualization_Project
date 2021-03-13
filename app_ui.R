@@ -171,6 +171,8 @@ page_two <- tabPanel(# >>>>>>>>>>>>>>>>>>>> Chart 2
   
   "Poverty/Attitudes",
   
+  h1("How do Poverty Levels Impact Attitudes Toward Environmental Education and Issues?"),
+  
   mainPanel(fluidRow(
     column(6, plotOutput(outputId = "ipr_plot")),
     column(
@@ -180,22 +182,22 @@ page_two <- tabPanel(# >>>>>>>>>>>>>>>>>>>> Chart 2
         input = "type",
         label = "Choose an Aspect of Environmental Education",
         choices = c(
-          "Descriptive Name" = "Support_Discussions",
-          "Descriptive Name" = "Support_Tax_Reductions",
-          "Descriptive Name" = "Support_CO2_Limits",
-          "Descriptive Name" = "Support_Local_Officials",
-          "Descriptive Name" = "Support_Congress",
-          "Descriptive Name" = "Support_President",
-          "Descriptive Name" = "Support_Corporations",
-          "Descriptive Name" = "Support_Regulations",
-          "Descriptive Name" = "Support_Renewable_Standards",
-          "Descriptive Name" = "Support_Offshore_Drilling",
-          "Descriptive Name" = "Support_Arctic_Drilling",
-          "Descriptive Name" = "Support_Funding_Renewables",
-          "Descriptive Name" = "See_Global_Warming_as_Priority",
-          "Descriptive Name" = "Support_Teaching_Global_Warming",
-          "Descriptive Name" = "Agree_Climate_Change_is_Happening",
-          "Descriptive Name" = "Worried_About_Global_Warming"
+          "Support Consistently Discussing Global Warming" = "Support_Discussions",
+          "Support Increasing Fossil Fuel Taxes" = "Support_Tax_Reductions",
+          "Support Limiting CO2 Production" = "Support_CO2_Limits",
+          "Support Local Officials Doing More to Address Global Warming" = "Support_Local_Officials",
+          "Support Congress Doing More to Address Global Warming" = "Support_Congress",
+          "Support the President Doing More to Address Global Warming" = "Support_President",
+          "Support Corporations Doing More to Address Global Warming" = "Support_Corporations",
+          "Support Regulating CO2 as a Pollutant" = "Support_Regulations",
+          "Support Requiring Utilities to Produce Electricity from 20% Renewable Resources" = "Support_Renewable_Standards",
+          "Support Expanding Offshore Drilling for Oil & Natural Gas" = "Support_Offshore_Drilling",
+          "Support Drilling for Oil in the Arctic National Wildlife Refuge" = "Support_Arctic_Drilling",
+          "Support Increasing Funding for Renewable Energy Sources" = "Support_Funding_Renewables",
+          "Support Believing Global Warming is a High Priority for the President & Congress" = "See_Global_Warming_as_Priority",
+          "Support Teaching About the Causes and Potential Solutions for Global Warming in Schools" = "Support_Teaching_Global_Warming",
+          "Think that Global Warming is Happening" = "Agree_Climate_Change_is_Happening",
+          "Are Somewhat/Very Worrid about Global Warming" = "Worried_About_Global_Warming"
         )
       )
     )
@@ -371,7 +373,14 @@ page_four <- tabPanel(
     style = "font-size:30px;"
   ),
   
-  p("We found that abc xyzs",
+  p("We found that based on the average IPR in each state, opinions tended to 
+    somewhat correlate to attitudes toward different issues. For example, attitudes
+    toward offshore drilling strongly reflected support from states that tended to have 
+    a lower IPR average while support for teaching more about global warming in schools 
+    had support from states with relatively higher IPR averages. These differences in support 
+    indicate that the level of income/poverty in a state has the ability to contribute to a 
+    person's political opinions as seen through the differences in opinions by state in the 
+    two charts.",
     style = "font-size:20px;"),
   
   br(),
