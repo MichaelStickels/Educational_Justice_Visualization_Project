@@ -17,15 +17,15 @@ source("app_server.R")
 
 main_page <- tabPanel(
   # >>>>>>>>>>>>>>>>>>>> Introduction page
-
+  
   "Introduction",
-
+  
   h1(
     strong("Inequality, Education, and the Environment"),
     style = "font-size:50px;",
     align = "center"
   ),
-
+  
   img(
     src = "mariamedem.jpg",
     height = 450,
@@ -33,14 +33,14 @@ main_page <- tabPanel(
     style = "display: block;
        margin-left: auto; margin-right: auto;"
   ),
-
+  
   br(),
-
+  
   div(
     class = "box",
-
+    
     h1("Introduction to Educational Justice"),
-
+    
     p(
       "This project studies how inequality affects primary and secondary
       education and people's environmental beliefs. We primarily used data from
@@ -56,11 +56,11 @@ main_page <- tabPanel(
       complexities behind climate opinions and prompt further discussion on
       changing environmental education."
     ),
-
+    
     br(),
-
+    
     h2("In this report, we want to answer the following questions:"),
-
+    
     HTML(
       "
 
@@ -74,9 +74,9 @@ main_page <- tabPanel(
     "
     ),
   ),
-
+  
   br(),
-
+  
   tags$head(
     tags$link(rel = "stylesheet", type = "text/css", href = "styles.css")
   ),
@@ -87,11 +87,11 @@ main_page <- tabPanel(
 
 page_one <- tabPanel(
   # >>>>>>>>>>>>>>>>>>>> Chart 1
-
+  
   "Policy Support",
-
+  
   h1("Is Environmental Education a Popular Public Opinion?"),
-
+  
   p(
     "In this chart we compare the support for climate education in schools to
      other environmental policies to visualize the priority of climate education
@@ -105,9 +105,9 @@ page_one <- tabPanel(
     based on the collective states. Finally, you may select specific states to
     get a more focused view on select state opinions on these policies."
   ),
-
+  
   br(),
-
+  
   fluidPage(sidebarLayout(
     sidebarPanel(
       radioButtons(
@@ -122,14 +122,14 @@ page_one <- tabPanel(
         ),
         selected = 1
       ),
-
+      
       radioButtons(
         "chart1_radio2",
         label = "Chart Options:",
         choices = list("Trend Lines" = 1, "Mean Lines" = 2),
         selected = 1
       ),
-
+      
       pickerInput(
         "statepicker",
         label = "Select States:",
@@ -139,15 +139,15 @@ page_one <- tabPanel(
         selected = states
       )
     ),
-
+    
     mainPanel(
       plotlyOutput("policy_plot", height = 800),
-
+      
       tableOutput("state"),
-
+      
       br()
     ),
-  ), )
+  ),)
 )
 
 
@@ -156,76 +156,70 @@ page_one <- tabPanel(
 
 
 page_two <- tabPanel(# >>>>>>>>>>>>>>>>>>>> Chart 2
-
+  
   "Poverty/Attitudes",
-
+  
   div(
     class = "centered",
-
+    
     h1(
       "How do Poverty Levels Impact Attitudes Toward Environmental Education
       and Issues?"
     ),
-
+    
     mainPanel(
       class = "column8",
-
-      fluidRow(
-        column(6, plotOutput(outputId = "ipr_plot")),
-        column(
-          6,
-          plotOutput(outputId = "types_plot")
-        )
-      ),
-
-      fluidRow(
-        column(6),
-        column(
-          6,
-          selectInput(
-            input = "type",
-            label = "Choose an Aspect of Environmental Education",
-            choices = c(
-              "Support Consistently Discussing Global Warming"
-              = "Support_Discussions",
-              "Support Increasing Fossil Fuel Taxes"
-              = "Support_Tax_Reductions",
-              "Support Limiting CO2 Production"
-              = "Support_CO2_Limits",
-              "Support Local Officials Doing More to Address Global
+      
+      fluidRow(column(6, plotOutput(outputId = "ipr_plot")),
+               column(6,
+                      plotOutput(outputId = "types_plot"))),
+      
+      fluidRow(column(6),
+               column(
+                 6,
+                 selectInput(
+                   input = "type",
+                   label = "Choose an Aspect of Environmental Education",
+                   choices = c(
+                     "Support Consistently Discussing Global Warming"
+                     = "Support_Discussions",
+                     "Support Increasing Fossil Fuel Taxes"
+                     = "Support_Tax_Reductions",
+                     "Support Limiting CO2 Production"
+                     = "Support_CO2_Limits",
+                     "Support Local Officials Doing More to Address Global
                      Warming" = "Support_Local_Officials",
-              "Support Congress Doing More to Address Global Warming"
-              = "Support_Congress",
-              "Support the President Doing More to Address Global
+                     "Support Congress Doing More to Address Global Warming"
+                     = "Support_Congress",
+                     "Support the President Doing More to Address Global
                      Warming" = "Support_President",
-              "Support Corporations Doing More to Address Global Warming"
-              = "Support_Corporations",
-              "Support Regulating CO2 as a Pollutant"
-              = "Support_Regulations",
-              "Support Requiring Utilities to Produce Electricity from
+                     "Support Corporations Doing More to Address Global Warming"
+                     = "Support_Corporations",
+                     "Support Regulating CO2 as a Pollutant"
+                     = "Support_Regulations",
+                     "Support Requiring Utilities to Produce Electricity from
                      20% Renewable Resources" = "Support_Renewable_Standards",
-              "Support Expanding Offshore Drilling for Oil & Natural Gas"
-              = "Support_Offshore_Drilling",
-              "Support Drilling for Oil in the Arctic National Wildlife
+                     "Support Expanding Offshore Drilling for Oil & Natural Gas"
+                     = "Support_Offshore_Drilling",
+                     "Support Drilling for Oil in the Arctic National Wildlife
                      Refuge" = "Support_Arctic_Drilling",
-              "Support Increasing Funding for Renewable Energy Sources"
-              = "Support_Funding_Renewables",
-              "Support Global Warming as a High Priority for the
+                     "Support Increasing Funding for Renewable Energy Sources"
+                     = "Support_Funding_Renewables",
+                     "Support Global Warming as a High Priority for the
                      President & Congress" = "See_Global_Warming_as_Priority",
-              "Support Teaching About the Causes and Potential Solutions
+                     "Support Teaching About the Causes and Potential Solutions
                      for Global Warming in Schools"
-              = "Support_Teaching_Global_Warming",
-              "Think that Global Warming is Happening"
-              = "Agree_Climate_Change_is_Happening",
-              "Are Somewhat/Very Worried about Global Warming"
-              = "Worried_About_Global_Warming"
-            )
-          )
-        ),
-      ),
-
+                     = "Support_Teaching_Global_Warming",
+                     "Think that Global Warming is Happening"
+                     = "Agree_Climate_Change_is_Happening",
+                     "Are Somewhat/Very Worried about Global Warming"
+                     = "Worried_About_Global_Warming"
+                   )
+                 )
+               ),),
+      
       br(),
-
+      
       fluidRow(
         class = "margin",
         p(
@@ -237,7 +231,7 @@ page_two <- tabPanel(# >>>>>>>>>>>>>>>>>>>> Chart 2
           topic/issue, attitudes are often reflective of the IPR in each state
           as they tend to stay similar when plotting different issues."
         ),
-
+        
         p(
           "The chart on the left displays the average IPR by state. The IPR is
       defined as the percentage of family income that is above or below the
@@ -246,7 +240,7 @@ page_two <- tabPanel(# >>>>>>>>>>>>>>>>>>>> Chart 2
       each state. An IPR value of 100 would represent a family with an
           income at the poverty threshold."
         ),
-
+        
         p(
           "The map to the right will change based on the specific aspect of
       environmental education you select to view. Darker shades indicate
@@ -258,18 +252,17 @@ page_two <- tabPanel(# >>>>>>>>>>>>>>>>>>>> Chart 2
         )
       )
     )
-  )
-)
+  ))
 
 
 
 
 page_three <- tabPanel(
   # >>>>>>>>>>>>>>>>>>>> Chart 3
-
+  
   "Education Funding Sources by State",
-
-
+  
+  
   sidebarLayout(
     sidebarPanel(
       radioButtons(
@@ -283,12 +276,12 @@ page_three <- tabPanel(
         selected = 2
       )
     ),
-
+    
     mainPanel(
       plotOutput("funding_plot", height = 800),
-
+      
       br(),
-
+      
       p(
         "This stacked bar chart compares education funding per state based on
         the percentage of funding that comes from federal, state, and local
@@ -300,28 +293,28 @@ page_three <- tabPanel(
         analysis could be done on how these differences affect education
         practices in each state."
       ),
-
+      
       br()
     )
   ),
-
-
-
+  
+  
+  
   br(),
   br(),
-
+  
   sidebarLayout(
     sidebarPanel(switchInput(
       inputId = "switch",
       label = "Adjusted",
       value = F
     )),
-
+    
     mainPanel(
       plotlyOutput("funding_comparison_plot", height = 800),
-
+      
       br(),
-
+      
       p(
         "This chart displays the total funding per student by state. They are
       displayed in two colors for ease of viewing so one can distinguish between
@@ -334,7 +327,7 @@ page_three <- tabPanel(
       that state, which may give a more accurate picture of public school
       spending."
       ),
-
+      
       br()
     )
   )
@@ -345,23 +338,23 @@ page_three <- tabPanel(
 
 page_four <- tabPanel(
   # >>>>>>>>>>>>>>>>>>>>  Conclusion page
-
+  
   "Conclusion",
-
+  
   div(
     class = "box",
-
+    
     h1(
       strong("Findings: Inequality, Education, and the Environment"),
       align = "center"
     ),
-
+    
     br(),
-
+    
     h3("In this report, we wanted to answer:"),
-
+    
     h2("Is environmental education a popular public opinion?"),
-
+    
     p(
       "We found that compared to other environmental policies, teaching global
     warming/climate change in schools was the second most supported policy,
@@ -370,9 +363,9 @@ page_four <- tabPanel(
     which leads us to consider how school funding is related to public support
     of climate education."
     ),
-
+    
     br(),
-
+    
     p(
       "Generally, the more school funding a state has, the more support there is
     for climate education and other positive climate policies (Regulating CO2,
@@ -382,9 +375,9 @@ page_four <- tabPanel(
     correlated with states showing more support for policies that negatively
     impact the climate."
     ),
-
+    
     br(),
-
+    
     p(
       paste(
         "In conclusion, teaching global warming/climate change in schools is in
@@ -401,15 +394,15 @@ page_four <- tabPanel(
         sep = ""
       )
     ),
-
+    
     tableOutput(clim_op_table),
-
+    
     br(),
-
+    
     h2(
       "How do state poverty levels impact environmental education attitudes?"
     ),
-
+    
     p(
       paste(
         "We found that the average IPR in each state tended to correlate with
@@ -429,11 +422,11 @@ page_four <- tabPanel(
         sep = ""
       )
     ),
-
+    
     br(),
-
+    
     h2("How does public education differ between states?"),
-
+    
     p(
       paste(
         "We found that based on which state you are in, you may be receiving
@@ -461,11 +454,30 @@ page_four <- tabPanel(
         sep = ""
       )
     ),
-
+    
     br(),
-
+    
+    p(
+      "In this project, we analyzed how education funding impacts public opinion
+      on environmental policies. We found that there is often a correlation
+      between a state's public-school funding and that state's general opinion
+      on environmental issues. States with more total public education funding
+      also have a higher percentage of support for positive climate change
+      policies. It seems clear that the United States, in order to create a more
+      equitable and effective education system, should examine these
+      discrepancies across the country, and ensure that students receive a good
+      education no matter where they are. It is also interesting to note that
+      according to the Yale Climate Opinion Survey, the overwhelming majority of
+      the population of the United States is for stricter climate policy, but
+      many policies like these have yet to be implemented. We hope that with
+      more data like this, countries will be encouraged to emphasize
+      environmental problems more strongly in their curriculum."
+    ),
+    
+    br(),
+    
     h2("Data sources"),
-
+    
     HTML(
       "
 
@@ -490,7 +502,7 @@ page_four <- tabPanel(
 
 ui <- navbarPage(
   "Educational Justice and the Environment",
-
+  
   main_page,
   page_one,
   page_two,
