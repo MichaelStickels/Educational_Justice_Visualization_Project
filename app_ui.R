@@ -93,6 +93,7 @@ page_one <- tabPanel(
   h1("Is Environmental Education a Popular Public Opinion?"),
   
   p(
+    class = "margin",
     "In this chart we compare the support for climate education in schools to
      other environmental policies to visualize the priority of climate education
      within American public opinion on climate policy. When you look at the
@@ -353,6 +354,8 @@ page_four <- tabPanel(
     
     h3("In this report, we wanted to answer:"),
     
+    br(),
+    
     h2("Is environmental education a popular public opinion?"),
     
     p(
@@ -395,7 +398,7 @@ page_four <- tabPanel(
       )
     ),
     
-    tableOutput(clim_op_table),
+    tableOutput("clim_op_table"),
     
     br(),
     
@@ -419,6 +422,7 @@ page_four <- tabPanel(
         state_ipr_lowest,
         ", and the state with the highest IPR was ",
         state_ipr_highest,
+        ".",
         sep = ""
       )
     ),
@@ -439,12 +443,12 @@ page_four <- tabPanel(
             that the state with the lowest funding per student was ",
         state_lowest_school_fund,
         " with $",
-        lowest_school_fund,
+        round(lowest_school_fund, 2),
         " per student total funding, and the state with the highest funding
             per   student was ",
         state_highest_school_fund,
         " with $",
-        highest_school_fund,
+        round(highest_school_fund, 2),
         " per student total funding. That is a
             difference of ",
         fund_difference,

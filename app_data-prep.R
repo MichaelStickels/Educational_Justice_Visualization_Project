@@ -220,7 +220,12 @@ clim_op_table <- climate_op_data %>%
     reducetax,
     drilloffshore,
     teachGW
-  )
+  ) %>%
+  mutate(fundrenewables = sprintf("%0.1f%%", fundrenewables),
+         regulate = sprintf("%0.1f%%", regulate),
+         reducetax = sprintf("%0.1f%%", reducetax),
+         drilloffshore = sprintf("%0.1f%%", drilloffshore),
+         teachGW = sprintf("%0.1f%%", teachGW))
 
 
 colnames(clim_op_table) <- c(

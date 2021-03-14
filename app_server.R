@@ -447,4 +447,5 @@ server <- function(input, output) {
       return(ggplotly(comp_chart, tooltip = "y"))
     }
   })
+  output$clim_op_table <- renderTable(clim_op_table)
 }

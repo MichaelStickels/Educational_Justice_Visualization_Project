@@ -63,20 +63,22 @@ p {
 }
 
 .column8 {
-	width: 100% !important;
+  width: 100% !important;
 }
 
 .margin {
-	width: 70% !important;
+  width: 80% !important;
+  margin-left:auto; 
+  margin-right:auto;
 }
 
-.a{
+a{
   display: table;
   margin-left:auto; 
   margin-right:auto;
 }
 
-.ul{
+ul{
   display: table;
   margin-left:auto; 
   margin-right:auto;
